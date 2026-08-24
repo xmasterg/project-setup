@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Task Board</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1015;--panel:#151a22;--line:#29303b;--text:#edf1f7;--muted:#929dac;--accent:#85e0a3;--danger:#ff7b72;--warn:#e3b341;--link:#79c0ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{position:sticky;top:0;z-index:5;display:flex;gap:16px;align-items:center;padding:18px 24px;background:#0d1015eb;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+h1{font-size:18px;margin:0}.meta{color:var(--muted);font-size:12px}.grow{flex:1}.tabs{display:flex;padding:3px;background:#090b0f;border:1px solid var(--line);border-radius:9px}
+button{border:0;border-radius:6px;background:transparent;color:var(--muted);padding:7px 12px;cursor:pointer}button.active{background:#252c37;color:var(--text)}
+main{padding:20px 24px 40px}.summary{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.summary span,.pill{border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:var(--muted);font-size:11px}
+.board{display:grid;grid-template-columns:repeat(5,minmax(245px,1fr));gap:12px;overflow-x:auto;align-items:start}.column{min-width:245px;background:#11151c;border:1px solid var(--line);border-radius:12px;padding:10px}.column-head{display:flex;justify-content:space-between;padding:4px 3px 10px;font-weight:650}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px;margin-bottom:8px}.card:last-child{margin-bottom:0}.card-top{display:flex;gap:8px;align-items:center}.id{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}.priority{margin-left:auto;font-size:11px}.P0{color:var(--danger)}.P1{color:var(--warn)}.urgency{font-size:10px;text-transform:capitalize}.urgency-urgent{color:var(--danger)}.urgency-high{color:var(--warn)}
+.title{font-weight:600;margin:7px 0}.details{color:var(--muted);font-size:12px}.tags,.docs{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}.tags span{font-size:10px;color:#a8b3c2;background:#202630;border-radius:4px;padding:2px 5px}.docs a{font-size:10px;color:var(--link);text-decoration:none}.docs a:hover{text-decoration:underline}
+.empty{color:#626d7b;padding:12px 4px}.list{display:none;max-width:1240px;margin:auto}.section{border:1px solid var(--line);background:#11151c;border-radius:12px;margin-bottom:12px;overflow:hidden}
+.section summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:center;padding:13px 15px;font-weight:650}.section summary::-webkit-details-marker{display:none}.section summary:before{content:"›";transition:.15s}.section[open] summary:before{transform:rotate(90deg)}.count{margin-left:auto;color:var(--muted);font-size:11px}
+.row{display:grid;grid-template-columns:95px minmax(220px,1fr) 110px 70px 80px 120px 70px;gap:12px;align-items:center;padding:11px 15px;border-top:1px solid var(--line)}.row-title{font-weight:550}.status{font-size:11px;text-transform:capitalize}.blocked{color:var(--danger)}.in_progress{color:#79c0ff}.done{color:var(--accent)}
+@media(max-width:760px){header{padding:14px;flex-wrap:wrap}main{padding:14px}.meta{display:none}.board{grid-template-columns:repeat(5,82vw)}.row{grid-template-columns:80px 1fr}.row>*:nth-child(n+3){display:none}}
+</style>
+</head>
+<body>
+<header><div><h1 id="project"></h1><div class="meta" id="updated"></div></div><div class="grow"></div><div class="tabs"><button id="kanbanBtn" class="active">Kanban</button><button id="listBtn">List</button></div></header>
+<main><div class="summary" id="summary"></div><div class="board" id="board"></div><div class="list" id="list"></div></main>
+<script>
+const data=__TASK_DATA__;
+const statuses=["backlog","ready","in_progress","blocked","done"];
+const names={backlog:"Backlog",ready:"Ready",in_progress:"In progress",blocked:"Blocked",done:"Done"};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tasks=[...(data.tasks||[])];
+document.querySelector("#project").textContent=data.project||"Project tasks";
+document.querySelector("#updated").textContent=data.updated_at?"Updated "+new Date(data.updated_at).toLocaleString():"";
+document.querySelector("#summary").innerHTML=statuses.map(s=>`<span>${names[s]} · ${tasks.filter(t=>t.status===s).length}</span>`).join("")+`<span>Urgent · ${tasks.filter(t=>t.urgency==="urgent").length}</span><span>High urgency · ${tasks.filter(t=>t.urgency==="high").length}</span>`;
+function tags(t){return (t.tags||[]).map(x=>`<span>${esc(x)}</span>`).join("")}
+function docHref(path){const prefix=".agents/project_management/tasks/";return path.startsWith(prefix)?encodeURI("../"+path.slice(prefix.length)):"#"}
+function docs(t){return (t.planning_docs||[]).map(x=>`<a href="${esc(docHref(x))}" target="_blank" rel="noreferrer">${esc(x.split("/").pop())}</a>`).join("")}
+function card(t){const links=docs(t);return `<article class="card"><div class="card-top"><span class="id">${esc(t.id)}</span><span class="pill">${esc(t.type)}</span><span class="urgency urgency-${esc(t.urgency)}">${esc(t.urgency)}</span><span class="priority ${esc(t.priority)}">${esc(t.priority)}</span></div><div class="title">${esc(t.title)}</div><div class="details">${esc(t.section)} · ${esc(t.owner||"unassigned")}</div><div class="tags">${tags(t)}</div>${links?`<div class="docs">${links}</div>`:""}</article>`}
+document.querySelector("#board").innerHTML=statuses.map(s=>{const items=tasks.filter(t=>t.status===s);return `<section class="column"><div class="column-head"><span>${names[s]}</span><span class="meta">${items.length}</span></div>${items.map(card).join("")||'<div class="empty">No tasks</div>'}</section>`}).join("");
+const sections=[...new Set(tasks.map(t=>t.section||"Unsectioned"))];
+document.querySelector("#list").innerHTML=sections.map(section=>{const items=tasks.filter(t=>(t.section||"Unsectioned")===section);return `<details class="section" open><summary>${esc(section)}<span class="count">${items.length}</span></summary>${items.map(t=>`<div class="row"><span class="id">${esc(t.id)}</span><span class="row-title">${esc(t.title)}</span><span class="status ${esc(t.status)}">${esc(names[t.status]||t.status)}</span><span class="${esc(t.priority)}">${esc(t.priority)}</span><span class="urgency urgency-${esc(t.urgency)}">${esc(t.urgency)}</span><span class="details">${esc(t.owner||"unassigned")}</span><span class="details">${(t.planning_docs||[]).length} docs</span></div>`).join("")}</details>`}).join("")||'<div class="empty">No tasks yet</div>';
+const board=document.querySelector("#board"),list=document.querySelector("#list"),kb=document.querySelector("#kanbanBtn"),lb=document.querySelector("#listBtn");
+kb.onclick=()=>{board.style.display="grid";list.style.display="none";kb.classList.add("active");lb.classList.remove("active")};
+lb.onclick=()=>{board.style.display="none";list.style.display="block";lb.classList.add("active");kb.classList.remove("active")};
+</script>
+</body></html>

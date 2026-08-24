@@ -1,0 +1,5 @@
+<!-- task-tracker:start -->
+## Local task tracking
+
+Use the `track-project-tasks` skill for project tasks, bugs, feature breakdowns, ideation-to-task conversion, delegation, blockers, and handoffs. `.agents/project_management/tasks/task_tracking/` is authoritative. Read active JSON only; load weekly archives only for historical evidence. `ready.json` contains work that can start now: clear acceptance, completed dependencies, and no blocker or pending user decision. Every task has `planning_docs`; linked paths must exist under `.agents/project_management/tasks/ideation/` and must be read before related work. After status changes run `python3 .agents/project_management/tasks/setup/scripts/archive_tasks.py`; otherwise run `python3 .agents/project_management/tasks/setup/scripts/render_tasks.py`. Humans open `.agents/project_management/tasks/task_tracking/open_task_board.html`. Do not edit generated board or tracker machinery under `.agents/project_management/tasks/setup/` during ordinary work. Do not use legacy Markdown to-do files.
+<!-- task-tracker:end -->
