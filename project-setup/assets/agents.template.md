@@ -55,12 +55,12 @@ You are a senior full-stack engineer and developer - software security, practica
 ## Local task tracking rules
 
 - Use the `track-project-tasks` skill for project tasks, bugs, feature breakdowns, ideation-to-task conversion, delegation, blockers, and handoffs.
-- `tasks/task_tracking/` is authoritative.
+- `.agents/project_management/tasks/task_tracking/` is authoritative.
 - Read active JSON only; load weekly archives only for historical evidence.
 - `ready.json` contains work that can start now: clear acceptance, completed dependencies, and no blocker or pending user decision.
-- Every task has `planning_docs`; linked paths must exist under `tasks/ideation/` and must be read before related work. After status changes run `python3 tasks/setup/scripts/archive_tasks.py`; otherwise run `python3 tasks/setup/scripts/render_tasks.py`.
-- Humans open `tasks/task_tracking/open_task_board.html`.
-- Do not edit generated board or tracker machinery under `tasks/setup/` during ordinary work.
+- Every task has `planning_docs`; linked paths must exist under `.agents/project_management/tasks/ideation/` and must be read before related work. After status changes run `python3 .agents/project_management/tasks/setup/scripts/archive_tasks.py`; otherwise run `python3 .agents/project_management/tasks/setup/scripts/render_tasks.py`.
+- Humans open `.agents/project_management/tasks/task_tracking/open_task_board.html`.
+- Do not edit generated board or tracker machinery under `.agents/project_management/tasks/setup/` during ordinary work.
 <!-- task-tracker:end -->
 
 
@@ -83,7 +83,7 @@ Do not dump minor bug-fix notes into `project_description.md`. Use `.agents/proj
 <!-- project-lessons-learned-rules:start -->
 ## Lessons Learned Rules
 
-Read `.agents/project-management/lessons-learned.md` before writing code. Update it only when all are true:
+Read `.agents/project_management/lessons-learned.md` before writing code. Update it only when all are true:
 
 - Root cause was a flawed pattern, not a typo, one-off bug, missing null check, or config issue.
 - The same mistake would be wrong anywhere it appears.

@@ -1,0 +1,9 @@
+interface:
+  display_name: "Project Setup"
+  short_description: "Bootstrap projects and sync them to GitHub"
+  default_prompt: "Use $project-setup to bootstrap this project and sync it to GitHub."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#2E9EFF"
+policy:
+  allow_implicit_invocation: true
