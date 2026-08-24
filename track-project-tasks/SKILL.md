@@ -5,17 +5,17 @@ description: Set up and maintain a human-readable project task workspace with ac
 
 # Track project tasks
 
-Keep `.agents/project_management/tasks/task_tracking/` authoritative. Humans open `.agents/project_management/tasks/task_tracking/open_task_board.html`. Tracker machinery lives under `.agents/project_management/tasks/setup/`; do not mix scripts or templates with task data. Read [references/storage-schema.md](references/storage-schema.md) before installation, upgrades, migrations, or direct task-file edits.
+Keep `<repository-root>/.agents/project_management/tasks/task_tracking/` authoritative. Humans open `.agents/project_management/tasks/task_tracking/open_task_board.html`. Tracker machinery lives under `.agents/project_management/tasks/setup/`; do not mix scripts or templates with task data. Application development files may live under `app/` or an existing project-specific source root, but tracker files never do. Read [references/storage-schema.md](references/storage-schema.md) before installation, upgrades, migrations, or direct task-file edits.
 
 ## Install or upgrade
 
-From the target project root, run:
+Resolve the repository root first. From that root, run:
 
 ```bash
-python3 "$(dirname "<absolute path of this SKILL.md>")/scripts/setup_project.py" --root "$PWD"
+python3 "$(dirname "<absolute path of this SKILL.md>")/scripts/setup_project.py" --root "<absolute repository root>"
 ```
 
-Installer creates missing v4 files, refreshes tracker-owned setup files, replaces bounded tracker instructions in `AGENTS.md`, migrates v1/v2/v3 storage, archives eligible completed work, and renders board. It removes old tracker-owned paths only after validation succeeds.
+Installer creates missing v4 files, refreshes tracker-owned setup files, replaces bounded tracker instructions in root `AGENTS.md`, migrates v1/v2/v3 storage, archives eligible completed work, and renders board. It removes old tracker-owned paths only after validation succeeds. Do not pass an `app/` or package subdirectory as `--root` when task management belongs to the whole repository.
 
 ## Read scope
 

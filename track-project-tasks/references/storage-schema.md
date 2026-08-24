@@ -2,6 +2,8 @@
 
 ## Project layout
 
+This tree is rooted at the repository or selected project-management root, not at `app/` or another application source folder. Application files are outside this tracker tree.
+
 ```text
 .agents/
 `-- project_management/

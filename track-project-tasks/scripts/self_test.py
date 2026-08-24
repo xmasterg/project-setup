@@ -66,6 +66,7 @@ def main() -> None:
 
         fresh = base / "fresh-project"
         fresh.mkdir()
+        (fresh / "app").mkdir()
         run("python3", str(setup), "--root", str(fresh), cwd=fresh)
         fresh_tasks = fresh / ".agents/project_management/tasks"
         assert (fresh_tasks / "task_tracking/open_task_board.html").is_file()
@@ -73,6 +74,7 @@ def main() -> None:
         assert (fresh_tasks / "setup/task_board/task_board.template.html").is_file()
         assert (fresh_tasks / "ideation/feature-plan.template.md").is_file()
         assert not (fresh / ".agents/task-board.html").exists()
+        assert not (fresh / "app/.agents").exists()
 
         v2 = base / "v2-project"
         old_tasks = v2 / ".agents" / "tasks"

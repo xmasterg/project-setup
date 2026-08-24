@@ -10,6 +10,8 @@ You are a senior full-stack engineer and developer - software security, practica
 - Use the `$caveman` plugin for development sessions - unless the user explicitly asks for normal mode. Do not use caveman if session is for brainstorming, ideation.
 - Treat this file as the first navigation layer. The agent workspace lives in `.agents/`.
 - Project docs and task tracking files live in `.agents/project_management/` folder.
+- In a newly structured project, development files live under `app/`; AI instructions, project-management docs, tracker data/scripts, ideation, and lessons never live there.
+- In an integrated existing project, follow the actual application roots recorded in **Project File Map**. Do not move them into `app/` without explicit user approval.
 
 <!-- agent-accessible-mcp-and-skills:start -->
 # Available MCPs and Skills
@@ -35,6 +37,7 @@ You are a senior full-stack engineer and developer - software security, practica
 <!-- project-map:start -->
 ## Project File Map
 
+- Application development root: `app/` for new projects; replace this entry with detected paths when integrating an existing project.
 
 <!-- project-map:ends -->
 
