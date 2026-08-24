@@ -1,28 +1,21 @@
-# Project Setup for Codex
+# New Project Setup for Codex
 
-Bootstrap a project, install its local task workspace, create or connect a GitHub repository, and sync the first verified commit.
+No skill or plugin needs to be installed first.
 
-## One-prompt install and setup
-
-Paste this into a Codex session opened at the project root:
+Open a clean Codex session in the project folder and paste this one line:
 
 ```text
-Install the project-setup skill from xmasterg/project-setup. After installation, read the installed project-setup/SKILL.md and use it to set up this project in this same turn.
+Run new project setup from https://github.com/xmasterg/project-setup.git
 ```
 
-The repository is private, so Codex needs existing GitHub access through Git credentials, a connected GitHub account, or an authenticated browser session.
+Codex accesses this repository, reads [NEW_PROJECT_SETUP.md](NEW_PROJECT_SETUP.md), installs the bundled skills into the user-level Codex skill location selected by the built-in installer, and executes setup against the original project folder in the same turn.
 
-## Later projects
-
-After the skill is installed, open a Codex session in any project and paste:
+It then asks one required question:
 
 ```text
-$project-setup set up this project
+Do you already have a GitHub repository for this project? Paste its URL, or reply create to make a new private repository named <project-folder>.
 ```
 
-Codex asks whether to use an existing GitHub repository or create a new private repository, then completes local setup, commits, pushes, and verifies the sync.
+After the answer, Codex completes project documentation, task tracking, supporting capability setup, Git initialization, commit, push, and local/remote verification.
 
-## Included skills
-
-- `project-setup`: end-to-end project bootstrap and GitHub workflow.
-- `track-project-tasks`: task storage, planning documents, status lifecycle, weekly archives, and generated task board.
+Because this repository is private, the clean Codex environment must already have access through Git credentials, a connected GitHub account, or an authenticated browser session. It must never ask for credentials to be pasted into chat.
