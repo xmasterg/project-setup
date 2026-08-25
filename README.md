@@ -1,39 +1,63 @@
 # Project Setup for Codex
 
-No skill or plugin needs to be installed first.
+> **TL;DR:** Set up a new or existing project with durable AI instructions, project docs, task tracking logic and local light-weight kanban/list view-only task page.
 
-Open a clean Codex session in the project folder and paste this one line:
+## What it does
+
+- Creates/Updates main `AGENTS.md` .
+- Adds project docs and task tracking under `.agents/project_management/`.
+- Light-weight and simple view-only task kanban/list  html page for us --> the humans.
+- Keeps existing project layouts unchanged by default.
+- Creates or connects a GitHub repository to your project, then verifies the push.
+- Uses `app/` directory (folder) for development files in brand-new projects.
+
+## Included skills
+
+| Skill | Purpose |
+| --- | --- |
+| `project-setup` | Full setup for new or existing projects |
+| `track-project-tasks` | Task files, planning docs, archives, and generated board |
+| `$brooks-lint` |  |
+| `$caveman`| Saves 70% of token usage by minimising words used for AI output (cuts out redundancy)|
+
+
+# SETUP
+
+### Full New Project Setup
+
+- Copy/Paste in Codex session
+
+**Full setup for new project**
 
 ```text
 Run new project setup from https://github.com/xmasterg/project-setup.git
 ```
 
-Codex accesses this repository, reads [NEW_PROJECT_SETUP.md](NEW_PROJECT_SETUP.md), installs the bundled skills into the user-level Codex skill location selected by the built-in installer, and executes setup against the original project folder in the same turn.
 
-For a new project, setup creates this boundary:
+### Setup task tracking only
 
-```text
-root/
-|-- .agents/
-|   |-- project_management/
-|   `-- ...
-|-- app/                 # web, mobile, API, packages, and development files
-|-- AGENTS.md
-`-- ...                  # repository metadata and appropriate root files
-```
-
-Root AI entrypoints such as `AGENTS.md` stay at the repository root. Project-management docs, task data, plans, and tracker scripts live under `.agents/project_management/`; none belong under `app/`.
-
-It asks for the GitHub destination:
+Your current project structure and docs unchanged:
 
 ```text
-Do you already have a GitHub repository for this project? Paste its URL, or reply create to make a new private repository named <project-folder>.
+Add task tracking only to this project using https://github.com/xmasterg/project-setup.git. 
+Install the track-project-tasks skill if missing. 
+Preserve the current application and documentation layout.
 ```
 
-For an existing project, Codex first inspects the current layout. It does not force current application code into `app/`. When `AGENTS.md` or `CLAUDE.md` already exists, Codex also asks which setup mode to use:
+If `track-project-tasks` is already installed:
 
-1. **Full adjustment — Danger zone:** reorganize root development paths under `app/` without rewriting application source contents, and fully rewrite root `AGENTS.md` while retaining applicable existing instructions and rebasing paths.
-2. **Preserve layout + full management integration (recommended):** leave application paths untouched, add the full `.agents/project_management/` workspace, and merge missing `AGENTS.md` sections.
-3. **Task management only:** add the tracker workspace/scripts and bounded `AGENTS.md` task instructions; leave other project docs and structure unchanged.
+```text
+Use $track-project-tasks from https://github.com/xmasterg/project-setup.git to install or upgrade task tracking in this project.
+```
+
+### Task Tracking Page
+
+- `.agents/project_management/tasks/task_tracking/open_task_board.html`.
+
+**Kanban view**
 
 After required answers, Codex completes the selected local setup, validation, Git initialization or connection, commit, push, and local/remote verification.
+
+Because this repository is private, the clean Codex environment must already have access through Git credentials, a connected GitHub account, or an authenticated browser session. It must never ask for credentials to be pasted into chat.
+
+![alt text](image-1.png)
