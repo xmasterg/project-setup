@@ -61,9 +61,9 @@ Check before installing anything. Avoid duplicates.
     ```text
     Install the brooks-lint skill from hyhmrright/brooks-lint
     ```
-  - If the Codex instruction cannot install it, use the creator's official Codex installer fallback:
+  - If the Codex instruction cannot install it, use the creator's exact all-platform installer command with `codex` as `<platform>`:
     ```bash
-    curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts/install.sh | bash -s -- codex
+    curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts/install.sh | bash -s -- <platform>
     ```
   - For Claude Code, use the creator's exact marketplace commands:
     ```text

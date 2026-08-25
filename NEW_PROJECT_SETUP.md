@@ -64,10 +64,10 @@ Codex session instruction:
 Install the brooks-lint skill from hyhmrright/brooks-lint
 ```
 
-Official Codex installer fallback:
+Official all-platform installer fallback (`<platform>` includes `codex`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts/install.sh | bash -s -- codex
+curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts/install.sh | bash -s -- <platform>
 ```
 
 Claude Code:
