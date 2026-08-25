@@ -60,11 +60,11 @@ Preserve the current application and documentation layout.
 
 **Kanban view**
 
-![alt text](image.png)
+![alt text](assets/readme/image.png)
 
 **List View**
-![alt text](image-1.png)
+![alt text](assets/readme/image-1.png)
 
 
 ### Project Structure
-![alt text](image-2.png)
+![alt text](assets/readme/image-2.png)
