@@ -69,7 +69,14 @@ def main() -> None:
         (fresh / "app").mkdir()
         run("python3", str(setup), "--root", str(fresh), cwd=fresh)
         fresh_tasks = fresh / ".agents/project_management/tasks"
-        assert (fresh_tasks / "task_tracking/open_task_board.html").is_file()
+        fresh_board = fresh_tasks / "task_tracking/open_task_board.html"
+        assert fresh_board.is_file()
+        fresh_board_html = fresh_board.read_text(encoding="utf-8")
+        assert 'id="labelFilters"' in fresh_board_html
+        assert 'id="tagFilters"' in fresh_board_html
+        assert 'id="sectionFilters"' in fresh_board_html
+        assert 'aria-pressed="${active}"' in fresh_board_html
+        assert "function visibleTasks()" in fresh_board_html
         assert (fresh_tasks / "setup/scripts/archive_tasks.py").is_file()
         assert (fresh_tasks / "setup/task_board/task_board.template.html").is_file()
         assert (fresh_tasks / "ideation/feature-plan.template.md").is_file()
