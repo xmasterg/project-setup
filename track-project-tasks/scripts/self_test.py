@@ -73,9 +73,15 @@ def main() -> None:
         assert fresh_board.is_file()
         fresh_board_html = fresh_board.read_text(encoding="utf-8")
         assert 'id="labelFilters"' in fresh_board_html
+        assert 'id="tagSearch"' in fresh_board_html
+        assert 'placeholder="Search hashtags"' in fresh_board_html
+        assert 'id="tagSuggestions"' in fresh_board_html
         assert 'id="tagFilters"' in fresh_board_html
         assert 'id="sectionFilters"' in fresh_board_html
         assert 'aria-pressed="${active}"' in fresh_board_html
+        assert "function matchingHashtags(query)" in fresh_board_html
+        assert 'event.key!=="Enter"' in fresh_board_html
+        assert 'hashtags.map(tag=>filterButton("tags",tag,tag))' not in fresh_board_html
         assert "function visibleTasks()" in fresh_board_html
         assert (fresh_tasks / "setup/scripts/archive_tasks.py").is_file()
         assert (fresh_tasks / "setup/task_board/task_board.template.html").is_file()
