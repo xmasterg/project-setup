@@ -17,7 +17,7 @@
 | --- | --- |
 | `project-setup` | Full setup for new or existing projects |
 | `track-project-tasks` | Task files, planning docs, archives, and generated board |
-| `$brooks-lint` |  |
+| `$brooks-lint` | Audits your codebase based on top 12 books on code quality, codebase debt, etc. |
 | `$caveman`| Saves 70% of token usage by minimising words used for AI output (cuts out redundancy)|
 
 
@@ -56,7 +56,7 @@ Use $track-project-tasks from https://github.com/xmasterg/project-setup.git to i
 
 **Kanban view**
 
-![alt text](image-1.png)
+![alt text](image.png)
 
 **List View**
-![alt text](image.png)
+![alt text](image-1.png)
