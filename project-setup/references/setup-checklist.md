@@ -46,8 +46,31 @@
 
 Check before installing anything. Avoid duplicates.
 
-- If `$caveman` is unavailable, use the host's plugin-management flow to install `JuliusBrussee/caveman`. If the host cannot install GitHub plugins, report that limitation without blocking other setup work.
-- If Brooks review/audit/debt/test/health/sweep skills are unavailable, use the built-in skill installer to install them from `hyhmrright/brooks-lint`. Install only skill directories discovered in that repository; do not guess paths.
+- **Caveman** — source: `https://github.com/JuliusBrussee/caveman#install`
+  - For Codex and other skills-compatible agents, use the creator's exact command:
+    ```bash
+    npx skills add JuliusBrussee/caveman --skill '*' -a codex --yes
+    ```
+  - For Claude Code, use the creator's exact command:
+    ```bash
+    claude plugin marketplace add JuliusBrussee/caveman && claude plugin install caveman@caveman
+    ```
+  - Use the command matching the active agent. If the required runtime is unavailable, report the exact limitation without blocking unrelated setup work.
+- **Brooks Lint** — source: `https://github.com/hyhmrright/brooks-lint#installation`
+  - In a Codex session, use the creator's exact instruction:
+    ```text
+    Install the brooks-lint skill from hyhmrright/brooks-lint
+    ```
+  - If the Codex instruction cannot install it, use the creator's official Codex installer fallback:
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts/install.sh | bash -s -- codex
+    ```
+  - For Claude Code, use the creator's exact marketplace commands:
+    ```text
+    /plugin marketplace add hyhmrright/brooks-lint
+    /plugin install brooks-lint@brooks-lint-marketplace
+    ```
+  - Confirm Brooks review/audit/debt/test/health/sweep skills are available after installation.
 - Do not reinstall or replace an existing skill/plugin unless the user explicitly requests an upgrade.
 
 ## Available MCP and skill inventory

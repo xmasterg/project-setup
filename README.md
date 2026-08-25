@@ -56,8 +56,7 @@ Use $track-project-tasks from https://github.com/xmasterg/project-setup.git to i
 
 **Kanban view**
 
-After required answers, Codex completes the selected local setup, validation, Git initialization or connection, commit, push, and local/remote verification.
-
-Because this repository is private, the clean Codex environment must already have access through Git credentials, a connected GitHub account, or an authenticated browser session. It must never ask for credentials to be pasted into chat.
-
 ![alt text](image-1.png)
+
+**List View**
+![alt text](image.png)

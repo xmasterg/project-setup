@@ -34,7 +34,50 @@ Use Codex's built-in skill installer to install these directories from `xmasterg
 
 Newly installed skills may not enter automatic skill discovery until the next turn. Do not pause or ask the user to restart: use the source files from this checkout to complete the current setup run.
 
-The local setup checklist contains conditional installation instructions for Caveman and Brooks. Follow them after checking whether those capabilities already exist.
+### Creator-authored supporting installs
+
+Check whether each capability already exists before installing it. Use the command for the active agent only. These commands are copied from the creators' current installation documentation; do not replace them with generic installation wording.
+
+#### Caveman
+
+Source: `https://github.com/JuliusBrussee/caveman#install`
+
+Codex and other skills-compatible agents:
+
+```bash
+npx skills add JuliusBrussee/caveman --skill '*' -a codex --yes
+```
+
+Claude Code:
+
+```bash
+claude plugin marketplace add JuliusBrussee/caveman && claude plugin install caveman@caveman
+```
+
+#### Brooks Lint
+
+Source: `https://github.com/hyhmrright/brooks-lint#installation`
+
+Codex session instruction:
+
+```text
+Install the brooks-lint skill from hyhmrright/brooks-lint
+```
+
+Official Codex installer fallback:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts/install.sh | bash -s -- codex
+```
+
+Claude Code:
+
+```text
+/plugin marketplace add hyhmrright/brooks-lint
+/plugin install brooks-lint@brooks-lint-marketplace
+```
+
+The local setup checklist defines how to apply these exact commands safely during setup.
 
 ## Execute in this turn
 
