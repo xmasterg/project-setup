@@ -37,5 +37,3 @@ For an existing project, Codex first inspects the current layout. It does not fo
 3. **Task management only:** add the tracker workspace/scripts and bounded `AGENTS.md` task instructions; leave other project docs and structure unchanged.
 
 After required answers, Codex completes the selected local setup, validation, Git initialization or connection, commit, push, and local/remote verification.
-
-Because this repository is private, the clean Codex environment must already have access through Git credentials, a connected GitHub account, or an authenticated browser session. It must never ask for credentials to be pasted into chat.
