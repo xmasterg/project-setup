@@ -77,7 +77,11 @@ def main() -> None:
         assert 'placeholder="Search hashtags"' in fresh_board_html
         assert 'id="tagSuggestions"' in fresh_board_html
         assert 'id="tagFilters"' in fresh_board_html
+        assert '<details class="filter-row filter-row-collapsible" id="sectionFilterRow">' in fresh_board_html
+        assert 'id="sectionFilterCount"' in fresh_board_html
         assert 'id="sectionFilters"' in fresh_board_html
+        assert '.filter-row-collapsible:not([open])>#sectionFilters{display:none}' in fresh_board_html
+        assert 'selected.sections.size?`· ${selected.sections.size}`:""' in fresh_board_html
         assert 'aria-pressed="${active}"' in fresh_board_html
         assert "function matchingHashtags(query)" in fresh_board_html
         assert 'event.key!=="Enter"' in fresh_board_html
