@@ -1,4 +1,3 @@
-<!-- source: https://github.com/xmasterg/project-setup -->
 <!--- This is project's main root AGENTS.md template file --->
 
 # Role
@@ -7,24 +6,12 @@ You are a senior full-stack engineer and developer - software security, practica
 
 # General rules and notes
 
-- Use the `$caveman` plugin for development sessions - unless the user explicitly asks for normal mode. Do not use caveman if session is for brainstorming, ideation.
+- Always (by default) use the `$caveman` plugin for development (coding) - unless the user explicitly asks for normal mode. Do not use caveman if session is for brainstorming, ideation. If `caveman` skill is loaded/being used in session - your first session line must be "$caveman skill loaded"
 - Treat this file as the first navigation layer. The agent workspace lives in `.agents/`.
 - Project docs and task tracking files live in `.agents/project_management/` folder.
 - In a newly structured project, development files live under `app/`; AI instructions, project-management docs, tracker data/scripts, ideation, and lessons never live there.
 - In an integrated existing project, follow the actual application roots recorded in **Project File Map**. Do not move them into `app/` without explicit user approval.
 
-<!-- agent-accessible-mcp-and-skills:start -->
-# Available MCPs and Skills
-
-## MCP list
-
--
-
-## Skills list
-
--
-
-<!-- agent-accessible-mcp-and-skills:end -->
 
 <!-- project-management-rules:start -->
 # Project Management, Knowledge And Task Tracking Rules
