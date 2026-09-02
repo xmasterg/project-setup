@@ -1,0 +1,13 @@
+interface:
+  display_name: "Task Tracking Setup"
+  short_description: "Install or upgrade local task tracking"
+  default_prompt: "Use $task-tracking-setup to install or upgrade repository-local task tracking. First confirm my exact absolute target, preview exact changes, and wait for approval."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  products:
+    - chatgpt
+    - codex
+    - api
+    - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,9 @@
+{
+  "bundle_asset_schema_version": 1,
+  "id": "development-guidance",
+  "version": "1.0.0",
+  "content": {
+    "AGENTS.md": "## General development guidance\n\n- Prefer existing patterns and the simplest design that satisfies current requirements.\n- Validate untrusted input at boundaries, protect secrets, and prefer secure defaults over convenience.\n- Keep dependencies minimal and justified; do not add packages for trivial behavior.\n- Keep responsibilities cohesive, interfaces explicit, dependency direction predictable, and side effects visible.\n- Diagnose root causes, preserve compatibility unless a break is approved, and avoid undocumented shortcuts or debt.",
+    "CLAUDE.md": "## General development guidance for Claude\n\n- Prefer existing patterns and the simplest design that satisfies current requirements.\n- Validate untrusted input at boundaries, protect secrets, and prefer secure defaults over convenience.\n- Keep dependencies minimal and justified; do not add packages for trivial behavior.\n- Keep responsibilities cohesive, interfaces explicit, dependency direction predictable, and side effects visible.\n- Diagnose root causes, preserve compatibility unless a break is approved, and avoid undocumented shortcuts or debt."
+  }
+}

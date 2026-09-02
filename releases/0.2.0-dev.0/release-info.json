@@ -1,0 +1,16 @@
+{
+  "board_data_version": 1,
+  "bundle_version": "0.2.0-dev.0",
+  "component_versions": {
+    "coordinator": "0.2.0-dev.0",
+    "project-setup": "0.2.0-dev.0",
+    "task-tracking-setup": "0.2.0-dev.0"
+  },
+  "immutable_commit": null,
+  "instruction_catalog_version": "1.0.0",
+  "manifest_schema_version": 1,
+  "published_tag": null,
+  "release_status": "unreleased",
+  "source_checkout_commit": null,
+  "tracker_data_schema_version": 4
+}

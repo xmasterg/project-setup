@@ -1,0 +1,220 @@
+{
+  "artifact_policies": {
+    "generated": "Derived output; replace only when its recorded baseline is unchanged.",
+    "managed": "Bundle-owned file; replace only when its recorded baseline is unchanged.",
+    "managed_block": "Bundle-owned marker block; preserve unmanaged surrounding text and reject malformed or customized blocks.",
+    "seed": "Create only when absent; an existing target remains user-owned.",
+    "user_data": "Create only when absent and never overwrite or retire it."
+  },
+  "artifacts": [
+    {
+      "action": "install",
+      "component": "coordinator",
+      "id": "coordinator-command",
+      "policy": "managed",
+      "sha256": "2e02c1633167a584f47e1391a8f90fab46ec4d589e9ea34568abb6e2fefd533c",
+      "source": "runtime/coordinator.py",
+      "target": ".agents/project_management/setup/coordinator.py"
+    },
+    {
+      "action": "install",
+      "component": "coordinator",
+      "id": "coordinator-core",
+      "policy": "managed",
+      "sha256": "9657571c763044462851337376089891c5cd5a9fda560515c4474ade079e2d2f",
+      "source": "runtime/update_core.py",
+      "target": ".agents/project_management/setup/update_core.py"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-integrator",
+      "policy": "managed",
+      "sha256": "91e5f53ef28ea0f3b8a077f766d243e486eacfbb82627ab9751a98f95af49ec0",
+      "source": "runtime/integrate_instructions.py",
+      "target": ".agents/project_management/setup/integrate_instructions.py"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-catalog",
+      "policy": "managed",
+      "sha256": "0750a2edc3f8fef914e07a279af537d0050e5160abdcf5d50c1c0ad38c97c83e",
+      "source": "assets/instructions/catalog.json",
+      "target": ".agents/project_management/setup/instructions/catalog.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-bundle-project-identity-map",
+      "policy": "managed",
+      "sha256": "24103bc1028072574a350a9282545bfd5afafb155b53165b3c2c8e5054c880a2",
+      "source": "assets/instructions/bundles/project-identity-map.json",
+      "target": ".agents/project_management/setup/instructions/bundles/project-identity-map.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-bundle-documentation-discipline",
+      "policy": "managed",
+      "sha256": "f141c2e045b93623609455b2217faf1af4bf75f7c6c004218ef9c7cc358bbb4c",
+      "source": "assets/instructions/bundles/documentation-discipline.json",
+      "target": ".agents/project_management/setup/instructions/bundles/documentation-discipline.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-bundle-task-tracking",
+      "policy": "managed",
+      "sha256": "f6510e5292525cb55ffc5d9f6fa85d63778989202ed82462343adb1b36b59b6e",
+      "source": "assets/instructions/bundles/task-tracking.json",
+      "target": ".agents/project_management/setup/instructions/bundles/task-tracking.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-bundle-tools-capability-inventory",
+      "policy": "managed",
+      "sha256": "17412cd3e5114df4dad01c9117c20376ca74c7148bbbe95dae41c9edf9f1641b",
+      "source": "assets/instructions/bundles/tools-capability-inventory.json",
+      "target": ".agents/project_management/setup/instructions/bundles/tools-capability-inventory.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-bundle-testing-verification",
+      "policy": "managed",
+      "sha256": "810c8f5557e1460a037d9a230da1685b08fc91597f0ad0e5554ad3ef6d6ccf1a",
+      "source": "assets/instructions/bundles/testing-verification.json",
+      "target": ".agents/project_management/setup/instructions/bundles/testing-verification.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "instruction-bundle-development-guidance",
+      "policy": "managed",
+      "sha256": "c7cdad92add822282086fce0c6c2a5ab0e554ea9fcb21bfb1033be097476243e",
+      "source": "assets/instructions/bundles/development-guidance.json",
+      "target": ".agents/project_management/setup/instructions/bundles/development-guidance.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "tracker-installer",
+      "policy": "managed",
+      "sha256": "0a7d68bdbd5b5d1c8f89a01ef3d64e1ec711b75be71f5ffcc2c27582963c224c",
+      "source": "runtime/install_tracker.py",
+      "target": ".agents/project_management/setup/install_tracker.py"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "tracker-integration",
+      "policy": "managed",
+      "sha256": "ffe3a8853bc67e0b15bc43fbc683713ffd9464b6443191c7ee37d0fabe3012a5",
+      "source": "assets/tracker-integration.json",
+      "target": ".agents/project_management/setup/assets/tracker-integration.json"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "tracker-vendored-archive",
+      "policy": "managed",
+      "sha256": "6f2f74850d2fd1a41eb9623b4f8de84005ecd5d4b4aa74674d2684ea4e735bfa",
+      "source": "assets/vendor/task-tracking-setup.zip",
+      "target": ".agents/project_management/setup/assets/vendor/task-tracking-setup.zip"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "capability-catalog",
+      "policy": "managed",
+      "sha256": "fe56d4718166640eebf5a8a31f54130460183d1a5ce4a7953518eb9faea07cef",
+      "source": "assets/capabilities/catalog.yaml",
+      "target": ".agents/project_management/setup/capabilities/catalog.yaml"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "runtime-ignore",
+      "policy": "managed",
+      "sha256": "240a3e0d37d2e86b614063f5347eb02d4f99ca6c254de6b82871ff8d95532a7d",
+      "source": "assets/runtime.gitignore",
+      "target": ".agents/project_management/setup/.runtime/.gitignore"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "coordinator-protocol",
+      "policy": "managed",
+      "sha256": "8a17abad2cf4896479d0ac74ed3648dc782ad5334f7a175ccf4969ecc4592cd2",
+      "source": "references/updater-protocol.md",
+      "target": ".agents/project_management/setup/updater-protocol.md"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "bundle-version",
+      "policy": "managed",
+      "sha256": "5b3efd64d87c8e642f761b984cb73bbd65260dfbf9fad85da31fb5d1271cb474",
+      "source": "VERSION",
+      "target": ".agents/project_management/setup/VERSION"
+    },
+    {
+      "action": "install",
+      "component": "project-setup",
+      "id": "release-info",
+      "policy": "managed",
+      "sha256": "872f9c30601c14f9c3ca50b4c5fd94c1021619a698a0f43ee4379127b28d21a7",
+      "source": "releases/0.2.0-dev.0/release-info.json",
+      "target": ".agents/project_management/setup/release-info.json"
+    }
+  ],
+  "bundle_version": "0.2.0-dev.0",
+  "component_versions": {
+    "coordinator": "0.2.0-dev.0",
+    "project-setup": "0.2.0-dev.0"
+  },
+  "immutable_commit": null,
+  "instruction_catalog_version": "1.0.0",
+  "manifest_schema_version": 1,
+  "migrations": [
+    {
+      "component": "coordinator",
+      "id": "coordinator-state-v1",
+      "rollback": "restore_backup"
+    },
+    {
+      "component": "project-setup",
+      "id": "instruction-bundles-v1",
+      "rollback": "restore_backup"
+    },
+    {
+      "component": "coordinator",
+      "id": "coordinator-approved-plan-v1",
+      "rollback": "restore_backup"
+    },
+    {
+      "component": "project-setup",
+      "id": "instruction-transaction-v1",
+      "rollback": "restore_backup"
+    },
+    {
+      "component": "project-setup",
+      "id": "self-contained-package-v1",
+      "rollback": "restore_backup"
+    }
+  ],
+  "published_tag": null,
+  "release_status": "unreleased",
+  "rollback": {
+    "declaration": "Restore the immediately previous receipt-backed file state only when every updated target still matches its post-update checksum.",
+    "mode": "one_release"
+  },
+  "source_identity": {
+    "immutable_commit": null,
+    "kind": "verified_local",
+    "published_tag": null,
+    "source_checkout_commit": null
+  }
+}

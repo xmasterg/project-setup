@@ -1,7 +1,7 @@
 interface:
   display_name: "Project Setup"
-  short_description: "Bootstrap or safely integrate projects"
-  default_prompt: "Use $project-setup to inspect, set up, and sync this project safely."
+  short_description: "Create a local project and optional Git setup"
+  default_prompt: "Use $project-setup to create a project. First ask me for the exact absolute local folder. Then ask me to choose: local folder only, local folder plus local Git, local folder plus remote Git, or an existing remote Git repository cloned locally. Keep the flow simple, create the complete AGENTS.md and local task tracking, and do the setup."
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
   brand_color: "#2E9EFF"

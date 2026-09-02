@@ -1,0 +1,42 @@
+{
+  "skill_name": "project-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up a new project for me.",
+      "expected_output": "A short first response asking for one exact absolute local folder path before inspecting or changing any target.",
+      "files": [],
+      "expectations": [
+        "The first response asks where to set up the project and requests an exact absolute local folder path.",
+        "The response does not infer the target from the current checkout, another open project, prior context, or a relative path.",
+        "The response does not ask about GitHub before the local path is known.",
+        "No target files or Git state are changed."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use {{TARGET}} as the exact local project folder.",
+      "expected_output": "One simple question offering the four supported local and Git setup choices.",
+      "files": [],
+      "expectations": [
+        "The response offers local folder only, local folder plus local Git, local folder plus remote Git, and an existing remote Git repository cloned locally.",
+        "The response does not assume Git or GitHub.",
+        "The response does not offer coordinator modes, selected skills, instruction bundles, or task-tracking-only mode.",
+        "No target mutation occurs before the setup choice is known."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The target is {{TARGET}}. Choose option 1, local folder only. The project is a small personal expense tracker. Set it up now.",
+      "expected_output": "A completed local project containing the full AGENTS.md template, project documentation, README, gitignore, app folder, and installed task tracker, with no Git repository created.",
+      "files": [],
+      "expectations": [
+        "The root AGENTS.md contains the Role, Available MCPs and Skills, Project Management, Local task tracking rules, Project Description Update Rules, Lessons Learned Rules, and Development Rules sections.",
+        "The task-tracking instructions say ordinary agents follow AGENTS.md directly and reserve task-tracking-setup for installation or maintenance.",
+        "README.md, .gitignore, app, project_description.md, lessons-learned.md, tracker JSON files, scripts, and the HTML board are created.",
+        "The response does not expose coordinator or managed-bundle details.",
+        "No Git repository, remote, commit, or push is created."
+      ]
+    }
+  ]
+}

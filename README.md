@@ -1,70 +1,93 @@
-# Project Setup for Codex
+# OVERVIEW (for humans)
 
-> **TL;DR:** Set up a new or existing project with durable AI instructions, project docs, task tracking logic and local light-weight kanban/list view-only task page.
+> **TL;DR:** Shortcut to initialize new local project's folder setup with task tracking for AI and local kanban/list web page for humans.
 
-## What it do?
+You can choose the type of setup, e.g.:
+- Run full new project setup (from folder structure to task tracking)
+- Run partial setup, e.g. add task tracking to an existing project
+- Update existing AGENTS.md file with specific section/-s
+- ...
 
-- Creates/Updates main `AGENTS.md`
-    - Role
-    - Development / Engineering rules (influenced by `$brooks-lint`)
-    - Project structure map
-    - Task tracking instructions
-    - Projecto doc update instructions
-    - MCP / Skill noting
-    - Lessons Learned note taking rules
-    - Project Description update rules
-- Project Docs setup `.agents/project_management/`
-- Task Tracking `.agents/project_management/tasks`.
-- Creates Light-weight view-only task kanban/list html page for us --> the humans.
-- Installs amazing skills
+## What it do? (little bit more details)
+
+- Creates/Updates (your choice) main `AGENTS.md`
+    - Agent's **Role**
+    - **Development / Engineering rules** (influenced by `$brooks-lint`)
+    - **Project's file structure map**
+    - **Task tracking** instructions
+    - **Project documentation update** instructions
+    - **Lessons Learned** note taking rules
+    - **Project Description** update rules
+- Sets up Project Docs in `.agents/project_management/`
+- Sets up Task Tracking scripts and files in `.agents/project_management/tasks`.
+- Creates from template Light-weight task kanban/list local only web page for the humans.
+- Installs amazing skills (if missing)
     - $brooks-lint
     - $caveman
 
-## Included skills
+# Using Project-Setup skill
+
+- Starts with onboarding questions by AI to human
+   - Setup type
+   - The path to the local folder where to initialize the setup.
+   - Git or No-Git
+      - If Git --> local or remote
+   
+## Setup types:
+- local folder only;
+- local folder + local Git repository;
+- local folder + remote Git repository; or
+- an existing remote Git repository cloned locally.
+
+## New project folder and file structure example
+
+```text
+project/
+|-- .agents/project_management/
+|   |-- project_description.md
+|   |-- lessons-learned.md
+|   `-- tasks/
+|-- app/
+|-- AGENTS.md
+|-- README.md
+`-- .gitignore
+```
+
+- `AGENTS.md` comes from the complete [`project-setup/assets/agents.template.md`](project-setup/assets/agents.template.md).
+- `AGENTS.md` file includes:
+   - project's file maps
+   - documentation rules
+   - task-tracking rules
+   - engineering quality
+   - security
+   - maintainability
+   -  testing guidance.
+
+## This repo include these main skills
 
 | Skill | Purpose |
 | --- | --- |
-| `$brooks-lint` | Audits your codebase based on top 12 books on code quality, codebase debt, etc. |
-| `$caveman`| Saves 70% of token usage by minimising words used for AI output (cuts out redundancy)|
+| `project-setup/` | Creates the local project and applies the selected Git choice. |
+| `task-tracking-setup/` | Installs, upgrades, migrates, repairs, or validates local task tracking. |
+
+## Task tracking setup
+
+>Sets up the folder and file structure and adds scripts for faster and less token consuming AI workflow when creating/editing/deleting/fetching tasks
+
+- 
+
+### **FYI**:
+- `task-tracking-setup` - is only used for SETUP not daily dev work. 
+- AI Agents follow instructions in `AGENTS.md` for 
 
 
-# SETUP
+## Task board web page (local file)
 
+- Humans open task tracker in chrome or integrated IDE web viewer
+   - File location inside project: `.agents/project_management/tasks/task_tracking/open_task_board.html` 
+- Local file, no dev server needed
 
-### Full New Project Setup
+![Kanban view](assets/readme/image.png)
 
-- Copy/Paste in Codex session
+![List view](assets/readme/image-1.png)
 
-
-**Full setup for new project**
-
-```text
-Run new project setup from https://github.com/xmasterg/project-setup.git
-```
-
-
-### Setup task tracking only
-
->Your current project structure and docs unchanged
-
-```text
-Add task tracking only to this project using https://github.com/xmasterg/project-setup.git. 
-Install the track-project-tasks skill if missing. 
-Preserve the current application and documentation layout.
-```
-
-
-### Task Tracking Page
-
-- `.agents/project_management/tasks/task_tracking/open_task_board.html`.
-
-**Kanban view**
-
-![alt text](assets/readme/image.png)
-
-**List View**
-![alt text](assets/readme/image-1.png)
-
-
-### Project Structure
-![alt text](assets/readme/image-2.png)

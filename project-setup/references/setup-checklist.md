@@ -1,92 +1,37 @@
-# Local setup checklist
+# Setup checklist
 
-## Preserve and inspect
+Use this after the user confirms an exact absolute local path and one setup type.
 
-- Read every applicable `AGENTS.md` before editing.
-- Read every applicable `CLAUDE.md` and treat it as existing project guidance; do not replace it.
-- Inspect project manifests, important top-level folders, Git status, remotes, and ignore rules.
-- Determine the repository root, application roots, workspace/package boundaries, and whether the target is new or existing before choosing destinations.
-- Preserve existing instructions, task data, configuration, unrelated changes, and running services.
-- Do not start a development server for setup.
+## Before writing
 
-## Choose the layout branch
+- Confirm the target is not this setup-source repository.
+- Inspect the target and applicable `AGENTS.md` or `CLAUDE.md` files read-only.
+- If the target is non-empty, identify collisions and ask before overwriting.
+- Confirm the one-sentence project purpose when it is not already known.
+- Do not start a development server.
 
-### New project
+## Create or update
 
-- Create root `.agents/project_management/` and `app/` boundaries.
-- Put development files under `app/`. Keep root `AGENTS.md`, project-management documents, tracker data/scripts, and AI plans outside `app/`.
-- Keep repository metadata and appropriate human-facing root files at the repository root.
-- If `app/` remains empty, copy `assets/app/.gitkeep`; remove the marker after development files exist. Do not create an AI or project document inside `app/` to make the folder visible to Git.
+- Use the complete `assets/agents.template.md` as the new root `AGENTS.md`.
+- Populate the project map and available MCP/skill lists only with known facts.
+- Create `.agents/project_management/project_description.md` and `lessons-learned.md` from the supplied templates.
+- Install the bundled `task-tracking-setup` package and confirm the task files and board exist.
+- Create a concise `README.md` and `.gitignore`.
+- For a fresh project, create `app/.gitkeep`.
+- For an existing or cloned project, preserve existing source locations and record them in the project map.
 
-### Existing project
+## Git choice
 
-- Keep the detected application topology by default. Never force an existing `src/`, `web/`, monorepo, or root application into `app/` without explicit full-adjustment consent.
-- If `AGENTS.md` or `CLAUDE.md` exists, use the three-option prompt from `SKILL.md` and wait before writing files.
-- For full adjustment, inventory exact sources and destinations, detect collisions, preserve application file contents, rewrite root `AGENTS.md` using all still-applicable existing instructions, and update instruction/documentation path references. Do not silently repair application code or external automation affected by moved paths.
-- For preserve-layout full integration, leave application paths unchanged and perform every project-guidance, documentation, tracking, capability, inventory, and validation item below.
-- For task-management only, run only the task-tracking and applicable validation sections. Do not add project description, lessons, inventory, project maps, supporting capabilities, or rewrite existing instruction files beyond the bounded task-tracker block. If only `CLAUDE.md` exists, create minimal root `AGENTS.md` with that block and a pointer to `CLAUDE.md`.
-- Without either instruction file, preserve the existing application topology and use preserve-layout full integration. Ask only if repository-root placement remains ambiguous.
+- Local folder only: no Git mutation.
+- Local folder + local Git: initialize only the confirmed target.
+- Local folder + remote Git: initialize if needed, connect or create the approved remote, then push without rewriting history.
+- Existing remote Git repository: clone the approved URL into the confirmed local path, then add only missing setup files.
 
-## Project guidance and documentation
+Never change Git state in the setup-source repository.
 
-1. If root `AGENTS.md` is missing, copy `assets/agents.template.md` from this skill. Replace its empty inventory and map sections with current project facts and selected layout. When `CLAUDE.md` exists, include it in the map and direct Codex to read it without copying contradictory instructions.
-2. If `AGENTS.md` exists, merge only missing project-management sections from the template unless confirmed full adjustment requires the documented rewrite. Do not replace or weaken existing instructions. Keep each managed marker pair unique.
-3. Create `.agents/project_management/project_description.md` from `assets/project/project_description.md` when missing, then describe the actual project purpose, stack, architecture, commands, and current status supported by repository evidence.
-4. Create `.agents/project_management/lessons-learned.md` from `assets/project/lessons-learned.md` when missing. Do not invent lessons.
-5. Update `Project File Map` with meaningful project paths and one-line ownership descriptions. For a new project, identify `app/` as the development root. For an existing project, record actual application roots rather than inventing `app/`. Exclude `.git`, dependency folders, caches, and generated output.
-6. Update `Project-Management File Map` with exact `.agents/project_management/` paths that exist.
+## Finish
 
-## Task tracking
-
-- Locate the installed `track-project-tasks/SKILL.md`, read it fully, and run its installer from the target root.
-- Confirm active JSON files, tracker scripts, ideation templates, and `open_task_board.html` exist.
-- Run the tracker self-test from the installed skill. Do not modify active project tasks merely to test setup.
-
-## Supporting capabilities
-
-Check before installing anything. Avoid duplicates.
-
-- **Caveman** — source: `https://github.com/JuliusBrussee/caveman#install`
-  - For Codex and other skills-compatible agents, use the creator's exact command:
-    ```bash
-    npx skills add JuliusBrussee/caveman --skill '*' -a codex --yes
-    ```
-  - For Claude Code, use the creator's exact command:
-    ```bash
-    claude plugin marketplace add JuliusBrussee/caveman && claude plugin install caveman@caveman
-    ```
-  - Use the command matching the active agent. If the required runtime is unavailable, report the exact limitation without blocking unrelated setup work.
-- **Brooks Lint** — source: `https://github.com/hyhmrright/brooks-lint#installation`
-  - In a Codex session, use the creator's exact instruction:
-    ```text
-    Install the brooks-lint skill from hyhmrright/brooks-lint
-    ```
-  - If the Codex instruction cannot install it, use the creator's exact all-platform installer command with `codex` as `<platform>`:
-    ```bash
-    curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts/install.sh | bash -s -- <platform>
-    ```
-  - For Claude Code, use the creator's exact marketplace commands:
-    ```text
-    /plugin marketplace add hyhmrright/brooks-lint
-    /plugin install brooks-lint@brooks-lint-marketplace
-    ```
-  - Confirm Brooks review/audit/debt/test/health/sweep skills are available after installation.
-- Do not reinstall or replace an existing skill/plugin unless the user explicitly requests an upgrade.
-
-## Available MCP and skill inventory
-
-Update the bounded `agent-accessible-mcp-and-skills` section in `AGENTS.md`:
-
-- list exact MCP server/tool-family names available in the current Codex session;
-- list exact skill names available to the current Codex session;
-- identify repo-scoped entries when relevant;
-- never include credentials, tokens, private endpoints, filesystem cache paths, or generated tool schemas.
-
-Keep entries concise and alphabetized. This is a current setup snapshot, not a promise that every collaborator has identical user-scoped tools.
-
-## Validate local setup
-
-- Validate both installed skills with the bundled skill validator when available.
-- Run `git diff --check`.
-- Review generated files and ensure links and paths in `AGENTS.md` resolve. For new projects, confirm `app/` exists and contains no AI or project-management docs. For existing projects, compare changed paths with the selected mode and confirm no unapproved application move occurred.
-- Continue to GitHub setup only after local validation passes.
+- Report the exact target.
+- Report created and updated paths.
+- Report tracker and Git results.
+- State any incomplete item plainly.

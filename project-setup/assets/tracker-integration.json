@@ -1,0 +1,17 @@
+{
+  "automatic_install": false,
+  "capability_id": "task-tracking-setup",
+  "immutable_commit": null,
+  "installation_policy": "checksum_verified_vendored_archive",
+  "installer_entrypoint": "runtime/install_tracker.py",
+  "integration_schema_version": 2,
+  "published_tag": null,
+  "release_status": "unreleased",
+  "required_board_data_version": 1,
+  "required_component_version": "0.2.0-dev.0",
+  "required_tracker_data_schema_version": 4,
+  "skill_entrypoint_in_archive": "task-tracking-setup/SKILL.md",
+  "source_checkout_commit": null,
+  "vendored_archive": "assets/vendor/task-tracking-setup.zip",
+  "vendored_archive_sha256": "6f2f74850d2fd1a41eb9623b4f8de84005ecd5d4b4aa74674d2684ea4e735bfa"
+}

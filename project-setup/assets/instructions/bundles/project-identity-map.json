@@ -1,0 +1,9 @@
+{
+  "bundle_asset_schema_version": 1,
+  "id": "project-identity-map",
+  "version": "1.0.0",
+  "content": {
+    "AGENTS.md": "## Project identity and map\n\n- Treat this repository's root instructions as the first navigation layer.\n- Project-management material belongs under `.agents/project_management/`; application code follows the established source roots.\n- Preserve existing application topology unless the user explicitly approves a move map.\n- Keep `.agents/project_management/project_description.md` and its project file map accurate when architecture or path ownership changes.",
+    "CLAUDE.md": "## Project identity and map\n\n- Use this repository's `CLAUDE.md` as Claude's first navigation layer.\n- Project-management material belongs under `.agents/project_management/`; application code follows the established source roots.\n- Preserve existing application topology unless the user explicitly approves a move map.\n- Keep `.agents/project_management/project_description.md` and its project file map accurate when architecture or path ownership changes."
+  }
+}

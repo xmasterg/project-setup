@@ -24,9 +24,7 @@ You are a senior full-stack engineer and developer - software security, practica
 
 -
 
-
 <!-- agent-accessible-mcp-and-skills:end -->
-
 
 <!-- project-management-rules:start -->
 # Project Management, Knowledge And Task Tracking Rules
@@ -52,20 +50,21 @@ You are a senior full-stack engineer and developer - software security, practica
 
 <!-- project-management-files:end -->
 
-
-
 <!-- task-tracker:start -->
 ## Local task tracking rules
 
-- Use the `track-project-tasks` skill for project tasks, bugs, feature breakdowns, ideation-to-task conversion, delegation, blockers, and handoffs.
+- Follow this section directly during ordinary development. The `task-tracking-setup` skill is only for installing, upgrading, migrating, repairing, or validating the tracker.
 - `.agents/project_management/tasks/task_tracking/` is authoritative.
-- Read active JSON only; load weekly archives only for historical evidence.
-- `ready.json` contains work that can start now: clear acceptance, completed dependencies, and no blocker or pending user decision.
-- Every task has `planning_docs`; linked paths must exist under `.agents/project_management/tasks/ideation/` and must be read before related work. After status changes run `python3 .agents/project_management/tasks/setup/scripts/archive_tasks.py`; otherwise run `python3 .agents/project_management/tasks/setup/scripts/render_tasks.py`.
-- Humans open `.agents/project_management/tasks/task_tracking/open_task_board.html`.
-- Do not edit generated board or tracker machinery under `.agents/project_management/tasks/setup/` during ordinary work.
+- Read `ready.json`, `in-progress.json`, and `blocked.json` first; read `backlog.json` when planning or prioritizing, and archives only for historical evidence.
+- Read every linked `planning_docs` file before related work.
+- Before material work, create or update the smallest useful record. Keep at most one `in_progress` task per owner; major features use one parent with independently verifiable children.
+- Before delegation, create an owned `in_progress` child and give the delegate its task ID. Mark work `done` only after acceptance passes, with completion time and verification evidence.
+- Preserve unknown fields, move whole records without duplicate IDs, and use `#blocked` plus a concrete note when work cannot proceed.
+- After status changes run `python3 .agents/project_management/tasks/setup/scripts/archive_tasks.py`; after other task edits run `python3 .agents/project_management/tasks/setup/scripts/render_tasks.py`.
+- Before handoff, reconcile stale `in_progress` work and report remaining blocked, ready, and backlog IDs.
+- Humans open `.agents/project_management/tasks/task_tracking/open_task_board.html`. Never edit generated `task_board.data.js` directly.
+- Do not edit tracker machinery under `.agents/project_management/tasks/setup/` during ordinary work.
 <!-- task-tracker:end -->
-
 
 <!-- project-description-update-rules:start -->
 ## Project Description Update Rules

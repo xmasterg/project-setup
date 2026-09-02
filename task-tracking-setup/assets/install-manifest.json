@@ -1,0 +1,282 @@
+{
+  "artifact_policies": {
+    "generated": "Regenerated from validated task data without mutating managed board assets or tracker configuration.",
+    "managed": "Tracker-owned runtime or template; customization is a conflict.",
+    "managed_block": "Tracker-owned marker block with unmanaged surrounding text preserved.",
+    "seed": "Created only when absent and preserved thereafter.",
+    "user_data": "Task or tracker data preserved and changed only by validated migrations."
+  },
+  "artifacts": [
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "task-data-backlog",
+      "policy": "user_data",
+      "source": "assets/project/tasks/task_tracking/backlog.json",
+      "source_sha256": "a06ce4bbdbb18cf66d5763ea3056d9461c0ab65e07495fda8dcfa1d982bb56aa",
+      "target": ".agents/project_management/tasks/task_tracking/backlog.json"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "task-data-blocked",
+      "policy": "user_data",
+      "source": "assets/project/tasks/task_tracking/blocked.json",
+      "source_sha256": "a06ce4bbdbb18cf66d5763ea3056d9461c0ab65e07495fda8dcfa1d982bb56aa",
+      "target": ".agents/project_management/tasks/task_tracking/blocked.json"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "task-data-in-progress",
+      "policy": "user_data",
+      "source": "assets/project/tasks/task_tracking/in-progress.json",
+      "source_sha256": "a06ce4bbdbb18cf66d5763ea3056d9461c0ab65e07495fda8dcfa1d982bb56aa",
+      "target": ".agents/project_management/tasks/task_tracking/in-progress.json"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "task-data-ready",
+      "policy": "user_data",
+      "source": "assets/project/tasks/task_tracking/ready.json",
+      "source_sha256": "a06ce4bbdbb18cf66d5763ea3056d9461c0ab65e07495fda8dcfa1d982bb56aa",
+      "target": ".agents/project_management/tasks/task_tracking/ready.json"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "tracker-metadata",
+      "policy": "user_data",
+      "source": "assets/project/tasks/setup/tracker.json",
+      "source_sha256": "e8b7678d90e37d1fb678006b392d99003df72a8da019111a8b4b8ac0200cce68",
+      "target": ".agents/project_management/tasks/setup/tracker.json"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "ideation-readme",
+      "policy": "seed",
+      "source": "assets/project/tasks/ideation/README.md",
+      "source_sha256": "44bdd8d861b42f164f68f2715f3053e83850d0f6f1b061b47eb32c0f77a6f6cb",
+      "target": ".agents/project_management/tasks/ideation/README.md"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "ideation-template",
+      "policy": "seed",
+      "source": "assets/project/tasks/ideation/feature-plan.template.md",
+      "source_sha256": "763ca67778a7bb7632c085d13581a61c0c4750655f73b0aa6955319c14c2344b",
+      "target": ".agents/project_management/tasks/ideation/feature-plan.template.md"
+    },
+    {
+      "accepted_legacy_sha256": [
+        "105d39e912f734900e5002bb7aedebc0e6998ae05765e6e6a49915a7ed1eccb5"
+      ],
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "runtime-task-store",
+      "policy": "managed",
+      "source": "scripts/task_store.py",
+      "source_sha256": "c323df379b53b9e66b72a4d01f06519927540602342d4f792c7afde6f1e4517e",
+      "target": ".agents/project_management/tasks/setup/scripts/task_store.py"
+    },
+    {
+      "accepted_legacy_sha256": [
+        "c4abae8a2564cea5055e1ea095b5002d304ba6d2f8ba8af72ee518f41f7b1e20"
+      ],
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "runtime-archive",
+      "policy": "managed",
+      "source": "scripts/archive_tasks.py",
+      "source_sha256": "7c14dac3734f6a638106ae13e978ca2656a22a4c21104efe2d902c6da4a382cd",
+      "target": ".agents/project_management/tasks/setup/scripts/archive_tasks.py"
+    },
+    {
+      "accepted_legacy_sha256": [
+        "d88a39edb4cf58c01860b3bc4c9276d54e6e517cffbd29f55eb8d259be099022"
+      ],
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "runtime-render",
+      "policy": "managed",
+      "source": "scripts/render_tasks.py",
+      "source_sha256": "9c234a20f55f26d54cc327c2d4923a0bdc49c0ec092e406732b7123755e64419",
+      "target": ".agents/project_management/tasks/setup/scripts/render_tasks.py"
+    },
+    {
+      "accepted_legacy_sha256": [],
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "runtime-install-transaction",
+      "policy": "managed",
+      "source": "scripts/install_transaction.py",
+      "source_sha256": "45a6aa54b24bc19025d201df6d8cda1ed3cd3fb7fe95b2175244bdf696dc0958",
+      "target": ".agents/project_management/tasks/setup/scripts/install_transaction.py"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "board-shell",
+      "policy": "managed",
+      "replaces_artifact_id": "generated-board",
+      "source": "assets/project/tasks/task_tracking/open_task_board.html",
+      "source_sha256": "d85400b02992a2da5faa0e77b9158a993c5dff4ded98db13d2790c0fbeda02f9",
+      "target": ".agents/project_management/tasks/task_tracking/open_task_board.html"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "board-styles",
+      "policy": "managed",
+      "source": "assets/project/tasks/setup/task_board/task_board.css",
+      "source_sha256": "b8a807679c64e00b74888e059f1123fe201229ec0b2d56e83e02df37a3aafd4d",
+      "target": ".agents/project_management/tasks/setup/task_board/task_board.css"
+    },
+    {
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "id": "board-application",
+      "policy": "managed",
+      "source": "assets/project/tasks/setup/task_board/task_board.js",
+      "source_sha256": "1382c9304951130ec15547266ecc8af0b0eb32433fdad5f94829693e92d7d273",
+      "target": ".agents/project_management/tasks/setup/task_board/task_board.js"
+    },
+    {
+      "board_data_version": 1,
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "candidate"
+      },
+      "generator": "runtime-render",
+      "id": "board-data",
+      "policy": "generated",
+      "source": null,
+      "target": ".agents/project_management/tasks/task_tracking/task_board.data.js"
+    },
+    {
+      "accepted_legacy_sha256": [
+        "dac5044ce7023cf7766206a5d5c59d1262fb6aedb77974146fcfa758ac582d75"
+      ],
+      "action": "retire",
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "recorded_or_accepted_legacy"
+      },
+      "id": "board-template",
+      "policy": "managed",
+      "source": null,
+      "target": ".agents/project_management/tasks/setup/task_board/task_board.template.html"
+    },
+    {
+      "block": {
+        "end_marker": "<!-- task-tracker:end -->",
+        "start_marker": "<!-- task-tracker:start -->"
+      },
+      "checksum": {
+        "algorithm": "sha256",
+        "mode": "managed_block"
+      },
+      "destination_source_sha256": {
+        "AGENTS.md": "aeab6db749c9193242f7d49376cb25d841c820a8c72e4459b294f34952c3b55b",
+        "CLAUDE.md": "f0ee3e1921836b78f9400e5ded6bdbddeb23942ca818913064acc3a2aa67952d"
+      },
+      "destination_sources": {
+        "AGENTS.md": "assets/AGENTS.block.md",
+        "CLAUDE.md": "assets/CLAUDE.block.md"
+      },
+      "id": "instruction-block",
+      "policy": "managed_block",
+      "source": "assets/AGENTS.block.md",
+      "source_sha256": "aeab6db749c9193242f7d49376cb25d841c820a8c72e4459b294f34952c3b55b",
+      "target": "{instruction_file}"
+    }
+  ],
+  "board_data_version": 1,
+  "bundle_version": "0.2.0-dev.0",
+  "component": "task-tracking-setup",
+  "component_version": "0.2.0-dev.0",
+  "dynamic_artifact_rules": [
+    {
+      "path_pattern": ".agents/project_management/tasks/task_tracking/completed/YYYY/MM/week-NN/tasks.json",
+      "policy": "user_data",
+      "purpose": "Exact validated weekly archive files discovered in the candidate."
+    },
+    {
+      "path_pattern": ".agents/project_management/tasks/ideation/<project-relative-file>",
+      "policy": "user_data",
+      "purpose": "Exact existing or migrated ideation files discovered in the candidate."
+    }
+  ],
+  "immutable_commit": null,
+  "manifest_schema_version": 1,
+  "migrations": [
+    {
+      "id": "tracker-v1-to-v4",
+      "rollback": "restore_backup"
+    },
+    {
+      "id": "tracker-v2-to-v4",
+      "rollback": "restore_backup"
+    },
+    {
+      "id": "tracker-v3-to-v4",
+      "rollback": "restore_backup"
+    },
+    {
+      "id": "task-board-split-v1",
+      "rollback": "restore_backup"
+    },
+    {
+      "id": "approved-plan-binding-v1",
+      "rollback": "restore_backup"
+    },
+    {
+      "id": "archive-transaction-v1",
+      "rollback": "restore_backup"
+    },
+    {
+      "id": "legacy-metadata-namespace-v1",
+      "rollback": "restore_backup"
+    }
+  ],
+  "published_tag": null,
+  "release_status": "unreleased",
+  "retirement_policy": "Delete only exact positively-owned legacy files validated and checksummed during the transaction; preserve unknown files and directories.",
+  "rollback": {
+    "declaration": "Restore every touched file from the fsynced transaction backup.",
+    "mode": "transaction"
+  },
+  "source_checkout_commit": null,
+  "tracker_data_schema_version": 4
+}

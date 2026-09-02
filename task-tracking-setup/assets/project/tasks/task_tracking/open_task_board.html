@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Task Board</title>
+  <link rel="stylesheet" href="../setup/task_board/task_board.css">
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <h1 id="projectName">Project task board</h1>
+      <p class="meta" id="boardMeta"></p>
+    </div>
+    <div class="view-tabs" role="tablist" aria-label="Board view">
+      <button id="kanbanViewButton" type="button" role="tab" aria-controls="kanbanView" aria-selected="true" tabindex="0">Kanban</button>
+      <button id="listViewButton" type="button" role="tab" aria-controls="listView" aria-selected="false" tabindex="-1">List</button>
+    </div>
+  </header>
+
+  <main id="boardApplication" hidden>
+    <section class="controls" aria-labelledby="filterHeading">
+      <div class="controls-heading">
+        <div>
+          <h2 id="filterHeading">Find work</h2>
+          <p id="resultSummary" class="meta" aria-live="polite"></p>
+        </div>
+        <button id="clearFiltersButton" type="button" class="secondary-button">
+          Clear filters <span id="activeFilterCount" aria-label="active filter count">0</span>
+        </button>
+      </div>
+
+      <div class="search-row">
+        <label for="taskSearch">Search tasks</label>
+        <input id="taskSearch" type="search" autocomplete="off" placeholder="ID, title, owner, section, or tag">
+        <label class="archive-toggle" for="showArchived">
+          <input id="showArchived" type="checkbox">
+          Include archived done tasks
+        </label>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label" id="statusFilterLabel">Status and urgency</span>
+        <div id="labelFilters" class="filter-options" role="group" aria-labelledby="statusFilterLabel"></div>
+      </div>
+
+      <div class="filter-row">
+        <label class="filter-label" for="tagSearch">Hashtags</label>
+        <div class="tag-filter-control">
+          <div class="tag-search-wrap">
+            <input id="tagSearch" type="search" autocomplete="off" placeholder="Search hashtags" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="tagSuggestions">
+            <div id="tagSuggestions" class="tag-suggestions" role="listbox" hidden></div>
+          </div>
+          <div id="tagFilters" class="filter-options" aria-label="Selected hashtags"></div>
+        </div>
+      </div>
+
+      <details class="section-filter-row">
+        <summary>Sections <span id="sectionFilterCount" class="selected-count"></span></summary>
+        <div id="sectionFilters" class="filter-options" aria-label="Section filters"></div>
+      </details>
+    </section>
+
+    <section id="kanbanView" class="board-view" role="tabpanel" aria-labelledby="kanbanViewButton"></section>
+    <section id="listView" class="list-view" role="tabpanel" aria-labelledby="listViewButton" hidden></section>
+  </main>
+
+  <section id="boardError" class="error-panel" role="alert" aria-live="assertive">
+    <h2>Task board unavailable</h2>
+    <p id="boardErrorMessage">The task board scripts or data payload did not load.</p>
+    <pre id="boardErrorDetail"></pre>
+  </section>
+
+  <noscript>
+    <section class="error-panel"><h2>JavaScript is required</h2><p>This local board needs classic JavaScript enabled to display validated task data.</p></section>
+  </noscript>
+  <script src="task_board.data.js"></script>
+  <script src="../setup/task_board/task_board.js"></script>
+</body>
+</html>

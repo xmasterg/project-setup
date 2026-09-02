@@ -1,0 +1,16 @@
+{
+  "current_source_version": "0.2.0-dev.0",
+  "release_index_schema_version": 1,
+  "releases": [
+    {
+      "immutable_commit": null,
+      "manifest_path": "releases/0.2.0-dev.0/install-manifest.json",
+      "manifest_sha256": "28921773305cdbf9bd684f1aaf56748516d25127d1e7a0f07d4a36a8f7c95b47",
+      "published_tag": null,
+      "source_checkout_commit": null,
+      "status": "unreleased",
+      "version": "0.2.0-dev.0"
+    }
+  ],
+  "stable_version": null
+}

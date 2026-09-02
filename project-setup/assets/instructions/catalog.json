@@ -1,0 +1,120 @@
+{
+  "catalog_schema_version": 1,
+  "catalog_version": "1.0.0",
+  "bundles": [
+    {
+      "id": "project-identity-map",
+      "version": "1.0.0",
+      "purpose": "Define project identity, source ownership, and the navigation map used by future agents.",
+      "applicability": {
+        "path_exists_any": ["package.json", "pyproject.toml", "Cargo.toml", "go.mod", "pom.xml", "src", "app"],
+        "selected_capabilities_any": [],
+        "coverage_terms_any": ["Project File Map", "application development root"]
+      },
+      "dependencies": [],
+      "conflicts": [],
+      "destinations": ["AGENTS.md", "CLAUDE.md"],
+      "markers": {
+        "AGENTS.md": {"start": "<!-- project-setup:project-identity-map:start -->", "end": "<!-- project-setup:project-identity-map:end -->"},
+        "CLAUDE.md": {"start": "<!-- project-setup:project-identity-map:start -->", "end": "<!-- project-setup:project-identity-map:end -->"}
+      },
+      "source_asset": "bundles/project-identity-map.json",
+      "recommended_modes": ["full", "guidance"]
+    },
+    {
+      "id": "documentation-discipline",
+      "version": "1.0.0",
+      "purpose": "Keep durable project descriptions and reusable lessons accurate without turning them into task logs.",
+      "applicability": {
+        "path_exists_any": [".agents/project_management/project_description.md", ".agents/project_management/lessons-learned.md"],
+        "selected_capabilities_any": [],
+        "coverage_terms_any": ["Project Description Update Rules", "lessons-learned.md before writing code"]
+      },
+      "dependencies": [],
+      "conflicts": [],
+      "destinations": ["AGENTS.md", "CLAUDE.md"],
+      "markers": {
+        "AGENTS.md": {"start": "<!-- project-setup:documentation-discipline:start -->", "end": "<!-- project-setup:documentation-discipline:end -->"},
+        "CLAUDE.md": {"start": "<!-- project-setup:documentation-discipline:start -->", "end": "<!-- project-setup:documentation-discipline:end -->"}
+      },
+      "source_asset": "bundles/documentation-discipline.json",
+      "recommended_modes": ["full", "guidance"]
+    },
+    {
+      "id": "task-tracking",
+      "version": "1.0.0",
+      "purpose": "Connect agents to the v4 local task store, planning documents, archives, and board-data workflow.",
+      "applicability": {
+        "path_exists_any": [".agents/project_management/tasks/setup/tracker.json"],
+        "selected_capabilities_any": ["task-tracking-setup"],
+        "coverage_terms_any": ["task-tracker:start", "task_board.data.js"]
+      },
+      "dependencies": [],
+      "conflicts": [],
+      "destinations": ["AGENTS.md", "CLAUDE.md"],
+      "markers": {
+        "AGENTS.md": {"start": "<!-- task-tracker:start -->", "end": "<!-- task-tracker:end -->"},
+        "CLAUDE.md": {"start": "<!-- task-tracker:start -->", "end": "<!-- task-tracker:end -->"}
+      },
+      "source_asset": "bundles/task-tracking.json",
+      "recommended_modes": ["full", "task-only", "guidance"]
+    },
+    {
+      "id": "tools-capability-inventory",
+      "version": "1.0.0",
+      "purpose": "List only explicitly selected or installed capabilities with reproducible provenance.",
+      "applicability": {
+        "path_exists_any": [],
+        "selected_capabilities_any": ["*"],
+        "coverage_terms_any": ["Selected project capabilities", "Capability inventory"]
+      },
+      "dependencies": [],
+      "conflicts": [],
+      "destinations": ["AGENTS.md", "CLAUDE.md"],
+      "markers": {
+        "AGENTS.md": {"start": "<!-- project-setup:tools-capability-inventory:start -->", "end": "<!-- project-setup:tools-capability-inventory:end -->"},
+        "CLAUDE.md": {"start": "<!-- project-setup:tools-capability-inventory:start -->", "end": "<!-- project-setup:tools-capability-inventory:end -->"}
+      },
+      "source_asset": "bundles/tools-capability-inventory.json",
+      "recommended_modes": ["full", "guidance"]
+    },
+    {
+      "id": "testing-verification",
+      "version": "1.0.0",
+      "purpose": "Require scoped verification, meaningful tests, and exact reporting of commands and gaps.",
+      "applicability": {
+        "path_exists_any": ["tests", "test", "pytest.ini", "vitest.config.ts", "vitest.config.js", "jest.config.js", "jest.config.ts"],
+        "selected_capabilities_any": [],
+        "coverage_terms_any": ["Report exact commands run", "verification gaps"]
+      },
+      "dependencies": [],
+      "conflicts": [],
+      "destinations": ["AGENTS.md", "CLAUDE.md"],
+      "markers": {
+        "AGENTS.md": {"start": "<!-- project-setup:testing-verification:start -->", "end": "<!-- project-setup:testing-verification:end -->"},
+        "CLAUDE.md": {"start": "<!-- project-setup:testing-verification:start -->", "end": "<!-- project-setup:testing-verification:end -->"}
+      },
+      "source_asset": "bundles/testing-verification.json",
+      "recommended_modes": ["full", "guidance"]
+    },
+    {
+      "id": "development-guidance",
+      "version": "1.0.0",
+      "purpose": "Set concise maintainability, security, dependency, and change-discipline defaults.",
+      "applicability": {
+        "path_exists_any": ["package.json", "pyproject.toml", "Cargo.toml", "go.mod", "pom.xml", "src", "app"],
+        "selected_capabilities_any": [],
+        "coverage_terms_any": ["Prefer the simplest design", "secure defaults over convenience"]
+      },
+      "dependencies": [],
+      "conflicts": [],
+      "destinations": ["AGENTS.md", "CLAUDE.md"],
+      "markers": {
+        "AGENTS.md": {"start": "<!-- project-setup:development-guidance:start -->", "end": "<!-- project-setup:development-guidance:end -->"},
+        "CLAUDE.md": {"start": "<!-- project-setup:development-guidance:start -->", "end": "<!-- project-setup:development-guidance:end -->"}
+      },
+      "source_asset": "bundles/development-guidance.json",
+      "recommended_modes": ["full", "guidance"]
+    }
+  ]
+}

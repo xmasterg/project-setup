@@ -1,0 +1,9 @@
+{
+  "bundle_asset_schema_version": 1,
+  "id": "testing-verification",
+  "version": "1.0.0",
+  "content": {
+    "AGENTS.md": "## Testing and verification\n\n- Verify the narrowest relevant behavior first, then broaden when shared code, schemas, build configuration, routing, or release behavior changes.\n- Test observable behavior and meaningful failure paths; avoid tests coupled to private implementation details.\n- Do not hide failing checks or weaken tests to make a change pass.\n- Report exact commands run, outcomes, and any verification gaps.",
+    "CLAUDE.md": "## Testing and verification\n\n- Claude verifies the narrowest relevant behavior first, then broadens when shared code, schemas, build configuration, routing, or release behavior changes.\n- Test observable behavior and meaningful failure paths; avoid tests coupled to private implementation details.\n- Do not hide failing checks or weaken tests to make a change pass.\n- Report exact commands run, outcomes, and any verification gaps."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "bundle_asset_schema_version": 1,
+  "id": "documentation-discipline",
+  "version": "1.0.0",
+  "content": {
+    "AGENTS.md": "## Documentation discipline\n\n- Update `.agents/project_management/project_description.md` when architecture, data flow, source ownership, build/deploy commands, security behavior, or major reusable UI conventions change.\n- Do not use project description as a task log; task state belongs in the tracker.\n- Read `.agents/project_management/lessons-learned.md` before implementation. Add only reusable root-cause lessons, never typo-level or one-off notes.\n- Keep links and referenced paths valid after moves.",
+    "CLAUDE.md": "## Documentation discipline\n\n- Claude updates `.agents/project_management/project_description.md` when architecture, data flow, source ownership, build/deploy commands, security behavior, or major reusable UI conventions change.\n- Do not use project description as a task log; task state belongs in the tracker.\n- Read `.agents/project_management/lessons-learned.md` before implementation. Add only reusable root-cause lessons, never typo-level or one-off notes.\n- Keep links and referenced paths valid after moves."
+  }
+}

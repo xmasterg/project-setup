@@ -1,0 +1,41 @@
+{
+  "skill_name": "task-tracking-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Please install task tracking in the project I’m working in and update both of its instruction files. Start now.",
+      "expected_output": "A response-only confirmation gate that asks for one exact absolute target path before target inspection or any tracker setup action.",
+      "files": [],
+      "expectations": [
+        "The first assistant response asks the user to confirm one exact absolute target path using the Here / Somewhere else choice.",
+        "The transcript contains no target inspection or filesystem tool call before exact target confirmation.",
+        "The response does not infer the target from the current or previous working directory.",
+        "No target files or Git state are changed."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The exact target is confirmed as {{TARGET}}. Install or upgrade tracking, and use both existing instruction destinations: AGENTS.md and CLAUDE.md. Run the JSON dry-run with both explicit destinations, save the exact preview and canonical plan token, then stop. Do not apply and do not change Git or GitHub.",
+      "expected_output": "A deterministic JSON dry-run for the confirmed target and both explicit instruction destinations, preserving the target and stopping before apply.",
+      "files": [],
+      "expectations": [
+        "The dry-run command uses the confirmed absolute root, --dry-run, --json, and explicit AGENTS.md and CLAUDE.md instruction destinations.",
+        "The saved JSON preview contains the exact proposed operations and a canonical plan_token.",
+        "No apply command is run after the preview and the target filesystem snapshot is unchanged.",
+        "No Git or GitHub mutation command is run."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The tracker is already installed in {{TARGET}}. Please use the task-tracking-setup skill to create a normal development task for today's coding session.",
+      "expected_output": "A clear boundary response that does not treat task-tracking-setup as the routine task-management workflow and points ordinary work to the installed AGENTS.md instructions.",
+      "files": [],
+      "expectations": [
+        "The response states that task-tracking-setup is for installation, upgrades, migration, repair, or validation only.",
+        "The response says routine task work follows the target project's AGENTS.md or CLAUDE.md rules and installed scripts directly.",
+        "The setup skill does not begin an install, upgrade, migration, or repair.",
+        "No target files or Git state are changed by the setup skill."
+      ]
+    }
+  ]
+}

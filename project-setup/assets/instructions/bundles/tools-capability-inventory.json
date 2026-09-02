@@ -1,0 +1,9 @@
+{
+  "bundle_asset_schema_version": 1,
+  "id": "tools-capability-inventory",
+  "version": "1.0.0",
+  "content": {
+    "AGENTS.md": "## Selected project capabilities\n\nUse only capabilities explicitly selected or installed for this project. This inventory is descriptive; it never authorizes installation or updates.\n\n{{CAPABILITY_INVENTORY}}",
+    "CLAUDE.md": "## Capabilities available to Claude\n\nClaude may use only capabilities explicitly selected or installed for this project. This inventory is descriptive; it never authorizes installation or updates.\n\n{{CAPABILITY_INVENTORY}}"
+  }
+}

@@ -1,4 +1,7 @@
 .DS_Store
 __pycache__/
 *.py[cod]
-/track-project-tasks.zip
+/task-tracking-setup.zip
+/project-setup-workspace/
+/task-tracking-setup-workspace/
+/dist/
