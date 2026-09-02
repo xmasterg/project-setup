@@ -51,6 +51,7 @@
             <input id="tagSearch" type="search" autocomplete="off" placeholder="Search hashtags" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="tagSuggestions">
             <div id="tagSuggestions" class="tag-suggestions" role="listbox" hidden></div>
           </div>
+          <span id="usedHashtagCount" class="used-hashtag-count"></span>
           <div id="tagFilters" class="filter-options" aria-label="Selected hashtags"></div>
         </div>
       </div>
@@ -59,6 +60,8 @@
         <summary>Sections <span id="sectionFilterCount" class="selected-count"></span></summary>
         <div id="sectionFilters" class="filter-options" aria-label="Section filters"></div>
       </details>
+
+      <div id="activeFilters" class="active-filters" aria-label="Active filters" hidden></div>
     </section>
 
     <section id="kanbanView" class="board-view" role="tabpanel" aria-labelledby="kanbanViewButton"></section>

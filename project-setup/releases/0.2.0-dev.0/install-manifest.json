@@ -111,7 +111,7 @@
       "component": "project-setup",
       "id": "tracker-integration",
       "policy": "managed",
-      "sha256": "ffe3a8853bc67e0b15bc43fbc683713ffd9464b6443191c7ee37d0fabe3012a5",
+      "sha256": "9a1b2ba5c6fc206d14f212a728f5c9486e44e5fe2f00a0eb545851711b4374da",
       "source": "assets/tracker-integration.json",
       "target": ".agents/project_management/setup/assets/tracker-integration.json"
     },
@@ -120,7 +120,7 @@
       "component": "project-setup",
       "id": "tracker-vendored-archive",
       "policy": "managed",
-      "sha256": "6f2f74850d2fd1a41eb9623b4f8de84005ecd5d4b4aa74674d2684ea4e735bfa",
+      "sha256": "f2898a593f94c1cf4812c97f20ad3d726717369b0a84a06f850c689fd08e98b7",
       "source": "assets/vendor/task-tracking-setup.zip",
       "target": ".agents/project_management/setup/assets/vendor/task-tracking-setup.zip"
     },

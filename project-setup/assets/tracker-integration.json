@@ -13,5 +13,5 @@
   "skill_entrypoint_in_archive": "task-tracking-setup/SKILL.md",
   "source_checkout_commit": null,
   "vendored_archive": "assets/vendor/task-tracking-setup.zip",
-  "vendored_archive_sha256": "6f2f74850d2fd1a41eb9623b4f8de84005ecd5d4b4aa74674d2684ea4e735bfa"
+  "vendored_archive_sha256": "f2898a593f94c1cf4812c97f20ad3d726717369b0a84a06f850c689fd08e98b7"
 }

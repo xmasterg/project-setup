@@ -5,7 +5,7 @@
     {
       "immutable_commit": null,
       "manifest_path": "releases/0.2.0-dev.0/install-manifest.json",
-      "manifest_sha256": "28921773305cdbf9bd684f1aaf56748516d25127d1e7a0f07d4a36a8f7c95b47",
+      "manifest_sha256": "cf4d9abe2b324bb5a11c2d12bd706f062619bf3e115d3e75dbafa578dfc90a9c",
       "published_tag": null,
       "source_checkout_commit": null,
       "status": "unreleased",

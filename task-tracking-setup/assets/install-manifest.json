@@ -147,7 +147,7 @@
       "policy": "managed",
       "replaces_artifact_id": "generated-board",
       "source": "assets/project/tasks/task_tracking/open_task_board.html",
-      "source_sha256": "d85400b02992a2da5faa0e77b9158a993c5dff4ded98db13d2790c0fbeda02f9",
+      "source_sha256": "c333ad5ae603da3a2c88b12861f7565e297115864ab974b80c0b5e4c0c8a32bd",
       "target": ".agents/project_management/tasks/task_tracking/open_task_board.html"
     },
     {
@@ -158,7 +158,7 @@
       "id": "board-styles",
       "policy": "managed",
       "source": "assets/project/tasks/setup/task_board/task_board.css",
-      "source_sha256": "b8a807679c64e00b74888e059f1123fe201229ec0b2d56e83e02df37a3aafd4d",
+      "source_sha256": "61ff78296c679f328a3137725d04541601be849d87b42dc3834eb738c12e7af9",
       "target": ".agents/project_management/tasks/setup/task_board/task_board.css"
     },
     {
@@ -169,7 +169,7 @@
       "id": "board-application",
       "policy": "managed",
       "source": "assets/project/tasks/setup/task_board/task_board.js",
-      "source_sha256": "1382c9304951130ec15547266ecc8af0b0eb32433fdad5f94829693e92d7d273",
+      "source_sha256": "2b5aa766acd7ee9a0328dfff8b44819076b70929dd96beccfce45ab654f14610",
       "target": ".agents/project_management/tasks/setup/task_board/task_board.js"
     },
     {

@@ -158,6 +158,8 @@ class BoardRenderTest(unittest.TestCase):
         self.assertIn('href="../setup/task_board/task_board.css"', html)
         self.assertIn('src="task_board.data.js"', html)
         self.assertIn('src="../setup/task_board/task_board.js"', html)
+        self.assertIn('id="activeFilters"', html)
+        self.assertIn('id="usedHashtagCount"', html)
         self.assertNotIn("<style", html)
         payload = read_payload(self.data_path)
         self.assertEqual(1, payload["board_data_version"])
@@ -480,6 +482,20 @@ process.stdout.write(JSON.stringify(nodes));
         self.assertIn("End: buttons.length - 1", javascript)
         self.assertIn("setView(next === 0 ? \"kanban\" : \"list\", true)", javascript)
         self.assertIn("(showKanban ? kanbanButton : listButton).focus()", javascript)
+
+    def test_board_exposes_clickable_multi_filters_details_and_column_toggles(self) -> None:
+        javascript = (self.setup / "task_board/task_board.js").read_text(encoding="utf-8")
+        css = (self.setup / "task_board/task_board.css").read_text(encoding="utf-8")
+        self.assertIn('data-task-filter-group="${escapeHtml(group)}"', javascript)
+        self.assertIn('data-filter-remove-group="${escapeHtml(group)}"', javascript)
+        self.assertIn('data-column-toggle="${status}"', javascript)
+        self.assertIn('<details class="task-details"><summary>Details</summary>', javascript)
+        self.assertIn("selected.tags.size && !task.tags.some", javascript)
+        self.assertIn("selected.urgencies.size", javascript)
+        self.assertIn("selected.priorities.size", javascript)
+        self.assertIn("selected.sections.size", javascript)
+        self.assertIn(".column-toggle", css)
+        self.assertIn(".active-filter-chip", css)
 
 
 class BoardInstallerUpdateTest(unittest.TestCase):

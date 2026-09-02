@@ -9,6 +9,7 @@
     blocked: "Blocked",
     done: "Done",
   };
+  const URGENCY_ORDER = ["urgent", "high", "medium", "normal", "low"];
 
   function element(id) {
     const found = document.getElementById(id);
@@ -120,8 +121,16 @@
     return `<div class="planning-links">${links}</div>`;
   }
 
+  function filterValueButton(group, value, label, className = "") {
+    return `<button type="button" class="task-filter ${escapeHtml(className)}" data-task-filter-group="${escapeHtml(group)}" data-task-filter-value="${escapeHtml(value)}">${escapeHtml(label)}</button>`;
+  }
+
+  function titleCase(value) {
+    return String(value).replace(/(^|[_-])(\w)/g, (_, separator, letter) => `${separator ? " " : ""}${letter.toUpperCase()}`);
+  }
+
   function tags(task) {
-    return task.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+    return task.tags.map((tag) => filterValueButton("tags", tag, tag, "tag")).join("");
   }
 
   function taskDetail(task) {
@@ -142,26 +151,28 @@
   }
 
   function card(task, archived) {
-    return `<article class="task-card"><details>
-      <summary class="card-summary">
-        <div class="card-top"><span class="task-id">${escapeHtml(task.id)}</span><span class="pill">${escapeHtml(task.type)}</span>${archived ? '<span class="archived-badge">Archived</span>' : ""}<span class="priority ${escapeHtml(task.priority)}">${escapeHtml(task.priority)}</span></div>
+    return `<article class="task-card">
+      <div class="card-summary">
+        <div class="card-top"><span class="task-id">${escapeHtml(task.id)}</span><span class="pill">${escapeHtml(task.type)}</span>${archived ? '<span class="archived-badge">Archived</span>' : ""}${filterValueButton("urgencies", task.urgency, titleCase(task.urgency), `priority urgency-${task.urgency}`)}${filterValueButton("priorities", task.priority, task.priority, `priority ${task.priority}`)}</div>
         <div class="task-title">${escapeHtml(task.title)}</div>
-        <div class="task-subtitle">${escapeHtml(task.section)} · ${escapeHtml(task.owner)}</div>
+        <div class="task-subtitle">${filterValueButton("sections", task.section || "Unsectioned", task.section || "Unsectioned", "section-filter")} · ${escapeHtml(task.owner)}</div>
         <div class="tag-list">${tags(task)}</div>
-      </summary>
-      ${taskDetail(task)}
-    </details></article>`;
+      </div>
+      <details class="task-details"><summary>Details</summary>${taskDetail(task)}</details>
+    </article>`;
   }
 
   function listRow(task, archived) {
-    return `<details class="task-row"><summary class="task-row-summary">
+    return `<article class="task-row"><div class="task-row-summary">
       <span class="task-id">${escapeHtml(task.id)}</span>
       <span class="row-title">${escapeHtml(task.title)}</span>
       <span class="status ${escapeHtml(task.status)}">${escapeHtml(STATUS_NAMES[task.status])}</span>
-      <span class="${escapeHtml(task.priority)}">${escapeHtml(task.priority)}</span>
+      ${filterValueButton("urgencies", task.urgency, titleCase(task.urgency), `priority urgency-${task.urgency}`)}
+      ${filterValueButton("priorities", task.priority, task.priority, `priority ${task.priority}`)}
       <span>${escapeHtml(task.owner)}</span>
-      <span>${archived ? '<span class="archived-badge">Archived</span>' : escapeHtml(task.section)}</span>
-    </summary>${taskDetail(task)}</details>`;
+      ${archived ? '<span class="archived-badge">Archived</span>' : filterValueButton("sections", task.section || "Unsectioned", task.section || "Unsectioned", "section-filter")}
+      <div class="row-tags">${tags(task)}</div>
+    </div><details class="task-details"><summary>Details</summary>${taskDetail(task)}</details></article>`;
   }
 
   function initializeBoard(boardData) {
@@ -179,16 +190,25 @@
     const labelFilters = element("labelFilters");
     const tagSearch = element("tagSearch");
     const tagSuggestions = element("tagSuggestions");
+    const usedHashtagCount = element("usedHashtagCount");
     const tagFilters = element("tagFilters");
     const sectionFilters = element("sectionFilters");
     const sectionFilterCount = element("sectionFilterCount");
+    const activeFilters = element("activeFilters");
 
     const activeTasks = boardData.activeTasks.map((task) => ({ task, archived: false }));
     const archivedTasks = boardData.archivedTasks.map((task) => ({ task, archived: true }));
     const allTasks = [...activeTasks, ...archivedTasks];
     const sections = [...new Set(allTasks.map(({ task }) => task.section || "Unsectioned"))].sort((a, b) => a.localeCompare(b));
     const hashtags = [...new Set(allTasks.flatMap(({ task }) => task.tags))].sort((a, b) => a.localeCompare(b));
-    const selected = { labels: new Set(), tags: new Set(), sections: new Set() };
+    const selected = {
+      statuses: new Set(),
+      urgencies: new Set(),
+      priorities: new Set(),
+      tags: new Set(),
+      sections: new Set(),
+    };
+    const collapsedColumns = new Set();
     let suggestionIndex = -1;
 
     element("projectName").textContent = boardData.config.project;
@@ -207,7 +227,7 @@
     }
 
     function activeCount() {
-      return selected.labels.size + selected.tags.size + selected.sections.size + (taskSearch.value.trim() ? 1 : 0) + (showArchived.checked ? 1 : 0);
+      return Object.values(selected).reduce((count, values) => count + values.size, 0) + (taskSearch.value.trim() ? 1 : 0) + (showArchived.checked ? 1 : 0);
     }
 
     function matchingHashtags(query) {
@@ -227,7 +247,7 @@
         return;
       }
       tagSuggestions.innerHTML = matches.map((tag, index) => (
-        `<button id="tagSuggestion${index}" type="button" class="tag-suggestion${index === suggestionIndex ? " active" : ""}" data-tag-suggestion="${escapeHtml(tag)}" role="option" aria-selected="${index === suggestionIndex}" tabindex="-1"><span>${escapeHtml(tag)}</span></button>`
+        `<button id="tagSuggestion${index}" type="button" class="tag-suggestion${index === suggestionIndex ? " active" : ""}" data-tag-suggestion="${escapeHtml(tag)}" role="option" aria-selected="${index === suggestionIndex}" tabindex="-1"><span>${escapeHtml(tag)}</span><span class="tag-suggestion-count">${allTasks.filter(({ task, archived }) => (!archived || showArchived.checked) && task.tags.includes(tag)).length} tasks</span></button>`
       )).join("");
       tagSuggestions.hidden = false;
       tagSearch.setAttribute("aria-expanded", "true");
@@ -244,13 +264,12 @@
     }
 
     function visibleTasks() {
-      const selectedStatuses = [...selected.labels].filter((value) => value.startsWith("status:")).map((value) => value.slice(7));
-      const selectedUrgencies = [...selected.labels].filter((value) => value.startsWith("urgency:")).map((value) => value.slice(8));
       const query = searchKey(taskSearch.value);
       return allTasks.filter(({ task, archived }) => {
         if (archived && !showArchived.checked) return false;
-        if (selectedStatuses.length && !selectedStatuses.includes(task.status)) return false;
-        if (selectedUrgencies.length && !selectedUrgencies.includes(task.urgency)) return false;
+        if (selected.statuses.size && !selected.statuses.has(task.status)) return false;
+        if (selected.urgencies.size && !selected.urgencies.has(task.urgency)) return false;
+        if (selected.priorities.size && !selected.priorities.has(task.priority)) return false;
         if (selected.tags.size && !task.tags.some((tag) => selected.tags.has(tag))) return false;
         if (selected.sections.size && !selected.sections.has(task.section || "Unsectioned")) return false;
         if (!query) return true;
@@ -259,20 +278,40 @@
       });
     }
 
+    function activeFilterChip(group, value, label) {
+      return `<button type="button" class="active-filter-chip" data-filter-remove-group="${escapeHtml(group)}" data-filter-remove-value="${escapeHtml(value)}" aria-label="Remove ${escapeHtml(label)} filter"><span>${escapeHtml(label)}</span><span aria-hidden="true">×</span></button>`;
+    }
+
+    function renderActiveFilters() {
+      const chips = [
+        ...[...selected.statuses].sort().map((value) => activeFilterChip("statuses", value, `Status: ${STATUS_NAMES[value] || value}`)),
+        ...[...selected.urgencies].sort((a, b) => URGENCY_ORDER.indexOf(a) - URGENCY_ORDER.indexOf(b)).map((value) => activeFilterChip("urgencies", value, `Urgency: ${titleCase(value)}`)),
+        ...[...selected.priorities].sort().map((value) => activeFilterChip("priorities", value, `Phase: ${value}`)),
+        ...[...selected.sections].sort().map((value) => activeFilterChip("sections", value, `Section: ${value}`)),
+        ...[...selected.tags].sort().map((value) => activeFilterChip("tags", value, value)),
+      ];
+      if (taskSearch.value.trim()) chips.push('<button type="button" class="active-filter-chip" data-filter-remove-search aria-label="Clear task search"><span>Search: ' + escapeHtml(taskSearch.value.trim()) + '</span><span aria-hidden="true">×</span></button>');
+      if (showArchived.checked) chips.push('<button type="button" class="active-filter-chip" data-filter-remove-archived aria-label="Hide archived tasks"><span>Archived</span><span aria-hidden="true">×</span></button>');
+      activeFilters.innerHTML = chips.length ? `<span class="active-filter-label">Active filters</span><div class="active-filter-list">${chips.join("")}</div>` : "";
+      activeFilters.hidden = !chips.length;
+    }
+
     function renderFilters() {
       const taskPool = showArchived.checked ? allTasks : activeTasks;
+      usedHashtagCount.textContent = `Used hashtags · ${hashtags.length}`;
       const labels = [
-        ...STATUS_ORDER.map((status) => ({ key: `status:${status}`, label: `${STATUS_NAMES[status]} · ${taskPool.filter(({ task }) => task.status === status).length}` })),
-        { key: "urgency:urgent", label: `Urgent · ${taskPool.filter(({ task }) => task.urgency === "urgent").length}` },
-        { key: "urgency:high", label: `High urgency · ${taskPool.filter(({ task }) => task.urgency === "high").length}` },
+        ...STATUS_ORDER.map((status) => ({ group: "statuses", key: status, label: `${STATUS_NAMES[status]} · ${taskPool.filter(({ task }) => task.status === status).length}` })),
+        ...URGENCY_ORDER.filter((urgency) => taskPool.some(({ task }) => task.urgency === urgency)).map((urgency) => ({ group: "urgencies", key: urgency, label: `${titleCase(urgency)} · ${taskPool.filter(({ task }) => task.urgency === urgency).length}` })),
+        ...[...new Set(taskPool.map(({ task }) => task.priority))].sort().map((priority) => ({ group: "priorities", key: priority, label: `${priority} · ${taskPool.filter(({ task }) => task.priority === priority).length}` })),
       ];
-      labelFilters.innerHTML = labels.map((item) => filterButton("labels", item.key, item.label)).join("");
+      labelFilters.innerHTML = labels.map((item) => filterButton(item.group, item.key, item.label)).join("");
       tagFilters.innerHTML = [...selected.tags].sort().map((tag) => filterButton("tags", tag, tag)).join("");
       sectionFilters.innerHTML = sections.map((section) => filterButton("sections", section, section)).join("") || '<span class="meta">No sections</span>';
       sectionFilterCount.textContent = selected.sections.size ? `· ${selected.sections.size}` : "";
       const count = activeCount();
       activeFilterCount.textContent = String(count);
       clearFilters.disabled = count === 0;
+      renderActiveFilters();
       renderTagSuggestions();
     }
 
@@ -280,7 +319,8 @@
       const visible = visibleTasks();
       kanbanView.innerHTML = STATUS_ORDER.map((status) => {
         const items = visible.filter(({ task }) => task.status === status);
-        return `<section class="column" aria-labelledby="column-${status}"><div class="column-heading"><span id="column-${status}">${STATUS_NAMES[status]}</span><span class="meta">${items.length}</span></div>${items.map(({ task, archived }) => card(task, archived)).join("") || '<div class="empty">No tasks</div>'}</section>`;
+        const collapsed = collapsedColumns.has(status);
+        return `<section class="column" aria-labelledby="column-${status}"><div class="column-heading"><span id="column-${status}">${STATUS_NAMES[status]}</span><span class="meta">${items.length}</span><button type="button" class="column-toggle" data-column-toggle="${status}" aria-expanded="${!collapsed}" aria-controls="column-items-${status}" aria-label="${collapsed ? "Show" : "Hide"} ${STATUS_NAMES[status]} tasks">${collapsed ? "▸" : "▾"}</button></div><div id="column-items-${status}" class="column-items" ${collapsed ? "hidden" : ""}>${items.map(({ task, archived }) => card(task, archived)).join("") || '<div class="empty">No tasks</div>'}</div></section>`;
       }).join("");
       listView.innerHTML = sections.map((section) => {
         const items = visible.filter(({ task }) => (task.section || "Unsectioned") === section);
@@ -315,12 +355,43 @@
       selected[group].has(value) ? selected[group].delete(value) : selected[group].add(value);
       render();
     });
+    activeFilters.addEventListener("click", (event) => {
+      const remove = event.target.closest("[data-filter-remove-group]");
+      if (remove) {
+        selected[remove.dataset.filterRemoveGroup].delete(remove.dataset.filterRemoveValue);
+        render();
+        return;
+      }
+      if (event.target.closest("[data-filter-remove-search]")) {
+        taskSearch.value = "";
+        render();
+        return;
+      }
+      if (event.target.closest("[data-filter-remove-archived]")) {
+        showArchived.checked = false;
+        render();
+      }
+    });
+    application.addEventListener("click", (event) => {
+      const filter = event.target.closest("[data-task-filter-group]");
+      if (filter) {
+        const group = filter.dataset.taskFilterGroup;
+        const value = filter.dataset.taskFilterValue;
+        selected[group].has(value) ? selected[group].delete(value) : selected[group].add(value);
+        render();
+        return;
+      }
+      const toggle = event.target.closest("[data-column-toggle]");
+      if (toggle) {
+        const status = toggle.dataset.columnToggle;
+        collapsedColumns.has(status) ? collapsedColumns.delete(status) : collapsedColumns.add(status);
+        renderViews();
+      }
+    });
     taskSearch.addEventListener("input", render);
     showArchived.addEventListener("change", render);
     clearFilters.addEventListener("click", () => {
-      selected.labels.clear();
-      selected.tags.clear();
-      selected.sections.clear();
+      Object.values(selected).forEach((values) => values.clear());
       taskSearch.value = "";
       showArchived.checked = false;
       render();
