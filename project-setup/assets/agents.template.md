@@ -6,18 +6,19 @@ You are a senior full-stack engineer and developer - software security, practica
 
 # General rules and notes
 
-- Always (by default) use the `$caveman` plugin for development (coding) - unless the user explicitly asks for normal mode. Do not use caveman if session is for brainstorming, ideation. If `caveman` skill is loaded/being used in session - your first session line must be "$caveman skill loaded"
+- Always (by default) use the `caveman` plugin/skill for development (coding) - unless the user explicitly asks for normal mode. Do not use caveman if session is for brainstorming, ideation. If `caveman` skill is loaded/being used in session - your first session line must be "$caveman skill loaded"
 - Treat this file as the first navigation layer. The agent workspace lives in `.agents/`.
 - Project docs and task tracking files live in `.agents/project_management/` folder.
 - In a newly structured project, development files live under `app/`; AI instructions, project-management docs, tracker data/scripts, ideation, and lessons never live there.
 - In an integrated existing project, follow the actual application roots recorded in **Project File Map**. Do not move them into `app/` without explicit user approval.
+- DO NOT use `task-tracking-setup` skill for project's actual task tracking.
+- The `task-tracking-setup` skill is only for installing, upgrading, migrating, repairing, or validating the tracker setup itself - NOT for actual project's task tracking.
 
 
 <!-- project-management-rules:start -->
 # Project Management, Knowledge And Task Tracking Rules
 
 - Always update **Project File Map**, **Project-Management File Map** when new project folders are created, renamed, deleted, moved;
-- Always update **AGENTS.md** when new Skill or MCP is removed or added;
 
 <!-- project-map:start -->
 ## Project File Map
@@ -40,7 +41,7 @@ You are a senior full-stack engineer and developer - software security, practica
 <!-- task-tracker:start -->
 ## Local task tracking rules
 
-- Follow this section directly during ordinary development. The `task-tracking-setup` skill is only for installing, upgrading, migrating, repairing, or validating the tracker.
+- Follow this section directly during ordinary development. 
 - `.agents/project_management/tasks/task_tracking/` is authoritative.
 - Read `ready.json`, `in-progress.json`, and `blocked.json` first; read `backlog.json` when planning or prioritizing, and archives only for historical evidence.
 - Read every linked `planning_docs` file before related work.
