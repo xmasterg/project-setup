@@ -25,6 +25,18 @@ You can choose the type of setup, e.g.:
     - $brooks-lint
     - $caveman
 
+## **SUGGESTED SKILL**:
+
+>Context7 (FREE) - "Up-to-date code documentation for LLMs and AI code editors"
+
+>Consumes less tokens vs If Ai agent would search the web to find the latest documentation
+
+- You need to manually install it [context7](https://context7.com/) 
+- Context7 needs signup to get your personal API key. **No credit card needed!**
+- [Context7 website url](https://context7.com)
+- [Context7 Github repo url](https://github.com/upstash/context7)
+
+
 # Using Project-Setup skill
 
 - Starts with onboarding questions by AI to human
@@ -69,6 +81,7 @@ project/
 | --- | --- |
 | `project-setup/` | Creates the local project and applies the selected Git choice. |
 | `task-tracking-setup/` | Installs, upgrades, migrates, repairs, or validates local task tracking. |
+
 
 ## Task tracking setup
 
