@@ -8,7 +8,15 @@ You can choose the type of setup, e.g.:
 - Update existing AGENTS.md file with specific section/-s
 - ...
 
-## What it do? (little bit more details)
+# Quick install commands
+
+**Install skill**
+>npx skills add xmasterg/skill-project-task-setup --skill '*' --agent codex --global --yes
+
+**Update skill**
+>npx skills update project-setup task-tracking-setup --global --yes
+
+# What it do? (little bit more details)
 
 - Creates/Updates (your choice) main `AGENTS.md`
     - Agent's **Role**
