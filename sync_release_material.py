@@ -338,7 +338,7 @@ def refreshed_capability_catalog(
         if identity.status == "stable":
             repository_path = capability.get("repository_path")
             capability["source"] = (
-                "https://github.com/xmasterg/project-setup/tree/"
+                "https://github.com/xmasterg/skill-project-task-setup/tree/"
                 f"{identity.published_tag}/{repository_path}"
             )
             capability["pinned_ref"] = identity.immutable_commit
@@ -913,7 +913,7 @@ def skill_package_payload(skill_root: Path) -> tuple[bytes, int]:
 def bootstrap_payload(identity: ReleaseIdentity) -> tuple[str, bytes]:
     if identity.status == "stable":
         filename = "github-bootstrap.txt"
-        heading = "Bootstrap this project from https://github.com/xmasterg/project-setup."
+        heading = "Bootstrap this project from https://github.com/xmasterg/skill-project-task-setup."
         tag = identity.published_tag
         commit = identity.immutable_commit
     else:
@@ -923,7 +923,7 @@ def bootstrap_payload(identity: ReleaseIdentity) -> tuple[str, bytes]:
             f"Version: {identity.version}\n"
             "This guarded template is not a published bootstrap. "
             "RELEASE_TAG and RELEASE_COMMIT are unresolved.\n\n"
-            "Bootstrap this project from https://github.com/xmasterg/project-setup."
+            "Bootstrap this project from https://github.com/xmasterg/skill-project-task-setup."
         )
         tag = "RELEASE_TAG"
         commit = "RELEASE_COMMIT"

@@ -1,4 +1,4 @@
-# Project Setup Bundle Instructions
+# skill-project-task-setup Instructions
 
 This repository is a bootstrap source for other projects.
 

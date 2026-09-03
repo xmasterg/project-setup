@@ -1,4 +1,4 @@
-# OVERVIEW (for humans)
+# skill-project-task-setup
 
 > **TL;DR:** Shortcut to initialize new local project's folder setup with task tracking for AI and local kanban/list web page for humans.
 
@@ -103,4 +103,3 @@ project/
 ![Kanban view](assets/readme/image.png)
 
 ![List view](assets/readme/image-1.png)
-

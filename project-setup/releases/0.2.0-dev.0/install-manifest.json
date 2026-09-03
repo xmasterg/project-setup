@@ -129,7 +129,7 @@
       "component": "project-setup",
       "id": "capability-catalog",
       "policy": "managed",
-      "sha256": "fe56d4718166640eebf5a8a31f54130460183d1a5ce4a7953518eb9faea07cef",
+      "sha256": "647c4aa1f10d8d6ef5ead3181e9384e9074e23123426845fc8f33657f3066d10",
       "source": "assets/capabilities/catalog.yaml",
       "target": ".agents/project_management/setup/capabilities/catalog.yaml"
     },

@@ -15,7 +15,7 @@
       "repository_path": "project-setup",
       "scope": "user_skill",
       "selectable": true,
-      "source": "https://github.com/xmasterg/project-setup/tree/PROJECT_SETUP_RELEASE/project-setup",
+      "source": "https://github.com/xmasterg/skill-project-task-setup/tree/PROJECT_SETUP_RELEASE/project-setup",
       "version": "0.2.0-dev.0"
     },
     {
@@ -32,7 +32,7 @@
       "repository_path": "task-tracking-setup",
       "scope": "user_skill",
       "selectable": true,
-      "source": "https://github.com/xmasterg/project-setup/tree/PROJECT_SETUP_RELEASE/task-tracking-setup",
+      "source": "https://github.com/xmasterg/skill-project-task-setup/tree/PROJECT_SETUP_RELEASE/task-tracking-setup",
       "version": "0.2.0-dev.0"
     },
     {
